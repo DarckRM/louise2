@@ -1,6 +1,8 @@
 package akarin.bot.louise2.domain.onebot.event;
 
 import akarin.bot.louise2.domain.onebot.event.api.PostEventInterface;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
 /**
  * @author akarin
@@ -8,5 +10,15 @@ import akarin.bot.louise2.domain.onebot.event.api.PostEventInterface;
  * @description 上报事件
  * @date 2025/2/14 14:17
  */
+@Data
 public class PostEvent implements PostEventInterface {
+
+    private Long time;
+
+    @JsonProperty("self_id")
+    private Long selfId;
+
+    @JsonProperty("post_type")
+    private String postType;
+
 }

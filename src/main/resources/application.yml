@@ -2,5 +2,8 @@ server:
   port: 8099
 
 spring:
+  output:
+    ansi:
+      enabled: ALWAYS
   application:
     name: louise2

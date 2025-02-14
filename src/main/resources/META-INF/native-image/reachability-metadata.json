@@ -1,0 +1,2654 @@
+{
+  "reflection": [
+    {
+      "type": "[Lcom.fasterxml.jackson.databind.deser.BeanDeserializerModifier;"
+    },
+    {
+      "type": "[Lcom.fasterxml.jackson.databind.deser.Deserializers;"
+    },
+    {
+      "type": "[Lcom.fasterxml.jackson.databind.deser.KeyDeserializers;"
+    },
+    {
+      "type": "[Lcom.fasterxml.jackson.databind.deser.ValueInstantiators;"
+    },
+    {
+      "type": "[Lcom.fasterxml.jackson.databind.ser.BeanSerializerModifier;"
+    },
+    {
+      "type": "[Lcom.fasterxml.jackson.databind.ser.Serializers;"
+    },
+    {
+      "type": "[Lorg.springframework.util.ConcurrentReferenceHashMap$Segment;"
+    },
+    {
+      "type": "[Lorg.springframework.web.bind.annotation.RequestMethod;"
+    },
+    {
+      "type": "[Z"
+    },
+    {
+      "type": "akarin.bot.louise2.Louise2Application",
+      "methods": [
+        {
+          "name": "main",
+          "parameterTypes": [
+            "java.lang.String[]"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "akarin.bot.louise2.Louise2Application$$SpringCGLIB$$0",
+      "allDeclaredFields": true,
+      "fields": [
+        {
+          "name": "CGLIB$FACTORY_DATA"
+        }
+      ],
+      "methods": [
+        {
+          "name": "CGLIB$SET_STATIC_CALLBACKS",
+          "parameterTypes": [
+            "org.springframework.cglib.proxy.Callback[]"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "akarin.bot.louise2.Louise2Application__ApplicationContextInitializer",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "akarin.bot.louise2.Louise2Application__EnvironmentPostProcessor"
+    },
+    {
+      "type": "akarin.bot.louise2.config.WebsocketConfig"
+    },
+    {
+      "type": "akarin.bot.louise2.config.WebsocketConfig$$SpringCGLIB$$0",
+      "allDeclaredFields": true,
+      "fields": [
+        {
+          "name": "CGLIB$FACTORY_DATA"
+        }
+      ],
+      "methods": [
+        {
+          "name": "CGLIB$SET_STATIC_CALLBACKS",
+          "parameterTypes": [
+            "org.springframework.cglib.proxy.Callback[]"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "akarin.bot.louise2.config.WebsocketConfig$$SpringCGLIB$$FastClass$$0",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "java.lang.Class"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "akarin.bot.louise2.config.WebsocketConfig$$SpringCGLIB$$FastClass$$1",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "java.lang.Class"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "akarin.bot.louise2.controller.TestController"
+    },
+    {
+      "type": "akarin.bot.louise2.ws.WebsocketChannel",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        },
+        {
+          "name": "onMessage",
+          "parameterTypes": [
+            "java.lang.String"
+          ]
+        },
+        {
+          "name": "onOpen",
+          "parameterTypes": [
+            "jakarta.websocket.Session",
+            "jakarta.websocket.EndpointConfig"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "boolean"
+    },
+    {
+      "type": "ch.qos.logback.classic.BasicConfigurator",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "ch.qos.logback.classic.LoggerContext"
+    },
+    {
+      "type": "ch.qos.logback.classic.joran.SerializedModelConfigurator",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "ch.qos.logback.classic.spi.LogbackServiceProvider"
+    },
+    {
+      "type": "ch.qos.logback.classic.util.DefaultJoranConfigurator",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "com.fasterxml.jackson.core.JsonGenerator"
+    },
+    {
+      "type": "com.fasterxml.jackson.core.ObjectCodec"
+    },
+    {
+      "type": "com.fasterxml.jackson.core.TreeCodec"
+    },
+    {
+      "type": "com.fasterxml.jackson.core.Versioned"
+    },
+    {
+      "type": "com.fasterxml.jackson.databind.Module"
+    },
+    {
+      "type": "com.fasterxml.jackson.databind.ObjectMapper"
+    },
+    {
+      "type": "com.fasterxml.jackson.databind.ext.Java7SupportImpl",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "com.fasterxml.jackson.databind.module.SimpleModule"
+    },
+    {
+      "type": "com.fasterxml.jackson.dataformat.cbor.CBORFactory"
+    },
+    {
+      "type": "com.fasterxml.jackson.dataformat.smile.SmileFactory"
+    },
+    {
+      "type": "com.fasterxml.jackson.dataformat.xml.XmlMapper"
+    },
+    {
+      "type": "com.fasterxml.jackson.dataformat.yaml.YAMLFactory"
+    },
+    {
+      "type": "com.fasterxml.jackson.datatype.jdk8.Jdk8Module",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "com.fasterxml.jackson.datatype.jsr310.JavaTimeModule",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "com.fasterxml.jackson.module.paramnames.ParameterNamesModule",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "com.google.gson.Gson"
+    },
+    {
+      "type": "com.mysql.cj.jdbc.AbandonedConnectionCleanupThread"
+    },
+    {
+      "type": "com.mysql.cj.jdbc.Driver"
+    },
+    {
+      "type": "com.rometools.rome.feed.WireFeed"
+    },
+    {
+      "type": "com.samskivert.mustache.Template"
+    },
+    {
+      "type": "freemarker.template.Configuration"
+    },
+    {
+      "type": "groovy.text.TemplateEngine"
+    },
+    {
+      "type": "io.micrometer.context.ContextSnapshot"
+    },
+    {
+      "type": "io.reactivex.rxjava3.core.Flowable"
+    },
+    {
+      "type": "io.smallrye.mutiny.Multi"
+    },
+    {
+      "type": "jakarta.ejb.EJB"
+    },
+    {
+      "type": "jakarta.faces.context.FacesContext"
+    },
+    {
+      "type": "jakarta.inject.Provider"
+    },
+    {
+      "type": "jakarta.inject.Qualifier"
+    },
+    {
+      "type": "jakarta.json.bind.Jsonb"
+    },
+    {
+      "type": "jakarta.persistence.PersistenceContext"
+    },
+    {
+      "type": "jakarta.servlet.GenericFilter"
+    },
+    {
+      "type": "jakarta.servlet.MultipartConfigElement"
+    },
+    {
+      "type": "jakarta.servlet.Servlet"
+    },
+    {
+      "type": "jakarta.servlet.ServletContext"
+    },
+    {
+      "type": "jakarta.servlet.jsp.jstl.core.Config"
+    },
+    {
+      "type": "jakarta.validation.Validator"
+    },
+    {
+      "type": "jakarta.websocket.OnMessage"
+    },
+    {
+      "type": "jakarta.websocket.OnOpen"
+    },
+    {
+      "type": "jakarta.websocket.server.ServerEndpoint"
+    },
+    {
+      "type": "jakarta.xml.bind.Binder"
+    },
+    {
+      "type": "jakarta.xml.ws.WebServiceRef"
+    },
+    {
+      "type": "java.beans.Introspector"
+    },
+    {
+      "type": "java.io.Console",
+      "methods": [
+        {
+          "name": "isTerminal",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "java.io.FilePermission"
+    },
+    {
+      "type": "java.io.Serializable"
+    },
+    {
+      "type": "java.lang.Boolean"
+    },
+    {
+      "type": "java.lang.Class"
+    },
+    {
+      "type": "java.lang.ClassLoader",
+      "fields": [
+        {
+          "name": "classLoaderValueMap"
+        }
+      ]
+    },
+    {
+      "type": "java.lang.Module"
+    },
+    {
+      "type": "java.lang.Object"
+    },
+    {
+      "type": "java.lang.RuntimePermission"
+    },
+    {
+      "type": "java.lang.String"
+    },
+    {
+      "type": "java.lang.Thread",
+      "fields": [
+        {
+          "name": "threadLocalRandomProbe"
+        }
+      ]
+    },
+    {
+      "type": "java.lang.Thread$Builder"
+    },
+    {
+      "type": "java.lang.WrongThreadException"
+    },
+    {
+      "type": "java.lang.constant.Constable"
+    },
+    {
+      "type": "java.lang.invoke.TypeDescriptor$OfField"
+    },
+    {
+      "type": "java.lang.reflect.AnnotatedElement"
+    },
+    {
+      "type": "java.lang.reflect.GenericDeclaration"
+    },
+    {
+      "type": "java.lang.reflect.ParameterizedType",
+      "methods": [
+        {
+          "name": "getActualTypeArguments",
+          "parameterTypes": []
+        },
+        {
+          "name": "getRawType",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "java.lang.reflect.Type"
+    },
+    {
+      "type": "java.lang.reflect.WildcardType",
+      "methods": [
+        {
+          "name": "getLowerBounds",
+          "parameterTypes": []
+        },
+        {
+          "name": "getUpperBounds",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "java.net.NetPermission"
+    },
+    {
+      "type": "java.net.SocketPermission"
+    },
+    {
+      "type": "java.net.URLPermission",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "java.lang.String",
+            "java.lang.String"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "java.net.UnixDomainSocketAddress"
+    },
+    {
+      "type": "java.net.http.HttpClient"
+    },
+    {
+      "type": "java.nio.channels.ServerSocketChannel"
+    },
+    {
+      "type": "java.nio.channels.SocketChannel"
+    },
+    {
+      "type": "java.security.AllPermission"
+    },
+    {
+      "type": "java.security.SecurityPermission"
+    },
+    {
+      "type": "java.sql.Date"
+    },
+    {
+      "type": "java.sql.Driver"
+    },
+    {
+      "type": "java.sql.DriverManager"
+    },
+    {
+      "type": "java.sql.Timestamp"
+    },
+    {
+      "type": "java.text.ListFormat"
+    },
+    {
+      "type": "java.util.ArrayList"
+    },
+    {
+      "type": "java.util.Enumeration"
+    },
+    {
+      "type": "java.util.HashSet"
+    },
+    {
+      "type": "java.util.List"
+    },
+    {
+      "type": "java.util.PropertyPermission"
+    },
+    {
+      "type": "java.util.Set"
+    },
+    {
+      "type": "java.util.concurrent.atomic.AtomicBoolean",
+      "fields": [
+        {
+          "name": "value"
+        }
+      ]
+    },
+    {
+      "type": "java.util.concurrent.atomic.Striped64",
+      "fields": [
+        {
+          "name": "base"
+        },
+        {
+          "name": "cellsBusy"
+        }
+      ]
+    },
+    {
+      "type": "java.util.logging.LogManager"
+    },
+    {
+      "type": "java.util.logging.SimpleFormatter",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "javax.inject.Qualifier"
+    },
+    {
+      "type": "javax.money.MonetaryAmount"
+    },
+    {
+      "type": "javax.naming.InitialContext"
+    },
+    {
+      "type": "javax.security.auth.Subject"
+    },
+    {
+      "type": "javax.smartcardio.CardPermission"
+    },
+    {
+      "type": "jdk.crac.management.CRaCMXBean"
+    },
+    {
+      "type": "jdk.internal.loader.ClassLoaders$AppClassLoader"
+    },
+    {
+      "type": "jdk.internal.loader.ClassLoaders$PlatformClassLoader"
+    },
+    {
+      "type": "jdk.internal.misc.Unsafe"
+    },
+    {
+      "type": "kotlin.Metadata"
+    },
+    {
+      "type": "kotlinx.coroutines.reactor.MonoKt"
+    },
+    {
+      "type": "kotlinx.serialization.cbor.Cbor"
+    },
+    {
+      "type": "kotlinx.serialization.json.Json"
+    },
+    {
+      "type": "kotlinx.serialization.protobuf.ProtoBuf"
+    },
+    {
+      "type": "org.apache.catalina.core.ApplicationContextFacade"
+    },
+    {
+      "type": "org.apache.catalina.loader.JdbcLeakPrevention",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        },
+        {
+          "name": "clearJdbcDriverRegistrations",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.apache.catalina.util.CharsetMapper",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.apache.coyote.AbstractProtocol",
+      "methods": [
+        {
+          "name": "getAddress",
+          "parameterTypes": []
+        },
+        {
+          "name": "getLocalPort",
+          "parameterTypes": []
+        },
+        {
+          "name": "getProperty",
+          "parameterTypes": [
+            "java.lang.String"
+          ]
+        },
+        {
+          "name": "setPort",
+          "parameterTypes": [
+            "int"
+          ]
+        },
+        {
+          "name": "setProperty",
+          "parameterTypes": [
+            "java.lang.String",
+            "java.lang.String"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.apache.coyote.http11.AbstractHttp11Protocol",
+      "methods": [
+        {
+          "name": "isSSLEnabled",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.apache.coyote.http11.Http11NioProtocol"
+    },
+    {
+      "type": "org.apache.hc.client5.http.impl.classic.HttpClients"
+    },
+    {
+      "type": "org.apache.jasper.compiler.JspConfig"
+    },
+    {
+      "type": "org.apache.jasper.servlet.JspServlet"
+    },
+    {
+      "type": "org.apache.logging.log4j.core.impl.Log4jContextFactory"
+    },
+    {
+      "type": "org.apache.logging.log4j.spi.ExtendedLogger"
+    },
+    {
+      "type": "org.apache.logging.slf4j.SLF4JProvider"
+    },
+    {
+      "type": "org.apache.tomcat.util.collections.LocalStrings"
+    },
+    {
+      "type": "org.apache.tomcat.util.collections.LocalStrings_zh"
+    },
+    {
+      "type": "org.apache.tomcat.util.collections.LocalStrings_zh_CN"
+    },
+    {
+      "type": "org.apache.tomcat.util.collections.LocalStrings_zh_Hans"
+    },
+    {
+      "type": "org.apache.tomcat.util.collections.LocalStrings_zh_Hans_CN"
+    },
+    {
+      "type": "org.apache.tomcat.util.net.AbstractEndpoint",
+      "methods": [
+        {
+          "name": "setBindOnInit",
+          "parameterTypes": [
+            "boolean"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.apache.tomcat.util.net.NioEndpoint"
+    },
+    {
+      "type": "org.apache.tomcat.websocket.WsFrameBase",
+      "fields": [
+        {
+          "name": "readState"
+        }
+      ]
+    },
+    {
+      "type": "org.apache.tomcat.websocket.server.DefaultServerEndpointConfigurator"
+    },
+    {
+      "type": "org.apache.tomcat.websocket.server.WsFilter"
+    },
+    {
+      "type": "org.apache.tomcat.websocket.server.WsHttpUpgradeHandler",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.crac.Core"
+    },
+    {
+      "type": "org.eclipse.core.runtime.FileLocator"
+    },
+    {
+      "type": "org.eclipse.jetty.client.HttpClient"
+    },
+    {
+      "type": "org.graalvm.nativeimage.ImageInfo",
+      "methods": [
+        {
+          "name": "inImageCode",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.jboss.logging.Logger"
+    },
+    {
+      "type": "org.reactivestreams.Publisher"
+    },
+    {
+      "type": "org.slf4j.Logger"
+    },
+    {
+      "type": "org.slf4j.bridge.SLF4JBridgeHandler"
+    },
+    {
+      "type": "org.slf4j.spi.LocationAwareLogger"
+    },
+    {
+      "type": "org.springframework.aop.framework.AopInfrastructureBean"
+    },
+    {
+      "type": "org.springframework.aop.framework.ProxyConfig",
+      "allDeclaredFields": true,
+      "methods": [
+        {
+          "name": "setProxyTargetClass",
+          "parameterTypes": [
+            "boolean"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.aop.framework.ProxyProcessorSupport",
+      "allDeclaredFields": true,
+      "methods": [
+        {
+          "name": "setOrder",
+          "parameterTypes": [
+            "int"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.aop.framework.autoproxy.InfrastructureAdvisorAutoProxyCreator"
+    },
+    {
+      "type": "org.springframework.aot.hint.annotation.Reflective"
+    },
+    {
+      "type": "org.springframework.beans.factory.Aware"
+    },
+    {
+      "type": "org.springframework.beans.factory.BeanClassLoaderAware"
+    },
+    {
+      "type": "org.springframework.beans.factory.BeanFactoryAware"
+    },
+    {
+      "type": "org.springframework.beans.factory.annotation.Autowired"
+    },
+    {
+      "type": "org.springframework.beans.factory.annotation.Qualifier"
+    },
+    {
+      "type": "org.springframework.beans.factory.config.BeanPostProcessor"
+    },
+    {
+      "type": "org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor"
+    },
+    {
+      "type": "org.springframework.beans.factory.config.SmartInstantiationAwareBeanPostProcessor"
+    },
+    {
+      "type": "org.springframework.boot.ApplicationProperties",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.ClearCachesApplicationListener",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.SpringBootConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.ansi.AnsiOutput$Enabled"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.AutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.AutoConfigurationPackage"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.AutoConfigurationPackages$BasePackages"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.AutoConfigureAfter"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.AutoConfigureBefore"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.AutoConfigureOrder"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.BackgroundPreinitializer",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.EnableAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.SharedMetadataReaderFactoryContextInitializer",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.SpringBootApplication"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.aop.AopAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.aop.AopAutoConfiguration$ClassProxyingConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.availability.ApplicationAvailabilityAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.condition.ConditionalOnBean"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.condition.ConditionalOnClass"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.condition.ConditionalOnNotWarDeployment"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.condition.ConditionalOnProperty"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.condition.ConditionalOnResource"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.condition.ConditionalOnThreading"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.context.LifecycleAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.context.LifecycleProperties",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.freemarker.FreeMarkerTemplateAvailabilityProvider",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.groovy.template.GroovyTemplateAvailabilityProvider",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.http.HttpMessageConvertersAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.http.HttpMessageConvertersAutoConfiguration$StringHttpMessageConverterConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.http.JacksonHttpMessageConvertersConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.http.JacksonHttpMessageConvertersConfiguration$MappingJackson2HttpMessageConverterConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.http.client.HttpClientAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.http.client.HttpClientProperties",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.info.ProjectInfoProperties",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.integration.IntegrationPropertiesEnvironmentPostProcessor",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$Jackson2ObjectMapperBuilderCustomizerConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonMixinConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperBuilderConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$ParameterNamesModuleConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.jackson.JacksonProperties",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.mustache.MustacheTemplateAvailabilityProvider",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.sql.init.SqlInitializationAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.sql.init.SqlInitializationProperties",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.ssl.SslAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.ssl.SslProperties",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.task.TaskExecutionProperties",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$SimpleAsyncTaskExecutorBuilderConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$TaskExecutorConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$ThreadPoolTaskExecutorBuilderConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.task.TaskSchedulingAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.task.TaskSchedulingConfigurations$SimpleAsyncTaskSchedulerBuilderConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.task.TaskSchedulingConfigurations$ThreadPoolTaskSchedulerBuilderConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.task.TaskSchedulingProperties",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.thymeleaf.ThymeleafTemplateAvailabilityProvider",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.ServerProperties",
+      "allDeclaredFields": true,
+      "methods": [
+        {
+          "name": "setPort",
+          "parameterTypes": [
+            "java.lang.Integer"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.WebProperties",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.client.RestClientAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.client.RestTemplateAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.embedded.EmbeddedWebServerFactoryCustomizerAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.embedded.EmbeddedWebServerFactoryCustomizerAutoConfiguration$TomcatWebServerFactoryCustomizerConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.servlet.ConditionalOnMissingFilterBean"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.servlet.DispatcherServletAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.servlet.DispatcherServletAutoConfiguration$DispatcherServletConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.servlet.DispatcherServletAutoConfiguration$DispatcherServletRegistrationConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.servlet.HttpEncodingAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.servlet.JspTemplateAvailabilityProvider",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.servlet.MultipartProperties",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryConfiguration$EmbeddedTomcat"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration$EnableWebMvcConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties",
+      "allDeclaredFields": true
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.servlet.error.AbstractErrorController"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration$DefaultErrorViewResolverConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.websocket.servlet.WebSocketMessagingAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.websocket.servlet.WebSocketServletAutoConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.autoconfigure.websocket.servlet.WebSocketServletAutoConfiguration$TomcatWebSocketConfiguration"
+    },
+    {
+      "type": "org.springframework.boot.builder.ParentContextCloserApplicationListener",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.cloud.CloudFoundryVcapEnvironmentPostProcessor",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.springframework.boot.logging.DeferredLogFactory"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.context.ConfigurationWarningsApplicationContextInitializer",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.context.ContextIdApplicationContextInitializer",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.context.FileEncodingApplicationListener",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.context.config.AnsiOutputApplicationListener",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.context.config.ConfigDataEnvironmentPostProcessor",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.springframework.boot.logging.DeferredLogFactory",
+            "org.springframework.boot.ConfigurableBootstrapContext"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.context.config.ConfigDataNotFoundAction"
+    },
+    {
+      "type": "org.springframework.boot.context.config.ConfigDataProperties",
+      "fields": [
+        {
+          "name": "this$0"
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.context.config.ConfigTreeConfigDataLoader",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.context.config.ConfigTreeConfigDataLocationResolver",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.springframework.core.io.ResourceLoader"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.context.config.StandardConfigDataLoader",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.context.config.StandardConfigDataLocationResolver",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.springframework.boot.logging.DeferredLogFactory",
+            "org.springframework.boot.context.properties.bind.Binder",
+            "org.springframework.core.io.ResourceLoader"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.context.event.EventPublishingRunListener",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.springframework.boot.SpringApplication",
+            "java.lang.String[]"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.context.logging.LoggingApplicationListener",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.context.properties.ConfigurationProperties"
+    },
+    {
+      "type": "org.springframework.boot.context.properties.EnableConfigurationProperties"
+    },
+    {
+      "type": "org.springframework.boot.context.properties.bind.Name"
+    },
+    {
+      "type": "org.springframework.boot.env.EnvironmentPostProcessorApplicationListener",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.env.PropertiesPropertySourceLoader",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.env.RandomValuePropertySourceEnvironmentPostProcessor",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "org.springframework.boot.logging.DeferredLogFactory"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.env.SpringApplicationJsonEnvironmentPostProcessor",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.env.YamlPropertySourceLoader",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.io.Base64ProtocolResolver",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.io.ProtocolResolverApplicationContextInitializer",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.loader.launch.LaunchedClassLoader"
+    },
+    {
+      "type": "org.springframework.boot.logging.java.JavaLoggingSystem$Factory",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.logging.java.JavaLoggingSystem.Factory"
+    },
+    {
+      "type": "org.springframework.boot.logging.log4j2.Log4J2LoggingSystem$Factory",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.logging.log4j2.Log4J2LoggingSystem.Factory"
+    },
+    {
+      "type": "org.springframework.boot.logging.logback.ColorConverter",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.logging.logback.EnclosedInSquareBracketsConverter",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.logging.logback.LogbackLoggingSystem$Factory",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.logging.logback.LogbackLoggingSystem.Factory"
+    },
+    {
+      "type": "org.springframework.boot.logging.logback.RootLogLevelConfigurator"
+    },
+    {
+      "type": "org.springframework.boot.reactor.ReactorEnvironmentPostProcessor",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.rsocket.context.RSocketPortInfoApplicationContextInitializer",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.validation.beanvalidation.MethodValidationExcludeFilter"
+    },
+    {
+      "type": "org.springframework.boot.web.context.ServerPortInfoApplicationContextInitializer",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.web.reactive.context.ReactiveWebServerApplicationContextFactory",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.web.servlet.context.ServletWebServerApplicationContextFactory",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.boot.web.servlet.error.ErrorController"
+    },
+    {
+      "type": "org.springframework.boot.web.servlet.filter.OrderedCharacterEncodingFilter"
+    },
+    {
+      "type": "org.springframework.boot.web.servlet.filter.OrderedFormContentFilter"
+    },
+    {
+      "type": "org.springframework.boot.web.servlet.filter.OrderedRequestContextFilter"
+    },
+    {
+      "type": "org.springframework.boot.web.servlet.server.Encoding",
+      "allDeclaredFields": true,
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "org.springframework.context.ApplicationContextAware"
+    },
+    {
+      "type": "org.springframework.context.ResourceLoaderAware"
+    },
+    {
+      "type": "org.springframework.context.annotation.Bean"
+    },
+    {
+      "type": "org.springframework.context.annotation.ComponentScan"
+    },
+    {
+      "type": "org.springframework.context.annotation.Conditional"
+    },
+    {
+      "type": "org.springframework.context.annotation.Configuration"
+    },
+    {
+      "type": "org.springframework.context.annotation.ConfigurationClassEnhancer$EnhancedConfiguration"
+    },
+    {
+      "type": "org.springframework.context.annotation.Import"
+    },
+    {
+      "type": "org.springframework.context.annotation.ImportRuntimeHints"
+    },
+    {
+      "type": "org.springframework.context.annotation.Lazy"
+    },
+    {
+      "type": "org.springframework.context.annotation.Primary"
+    },
+    {
+      "type": "org.springframework.context.annotation.Scope"
+    },
+    {
+      "type": "org.springframework.core.Ordered"
+    },
+    {
+      "type": "org.springframework.core.annotation.AliasFor"
+    },
+    {
+      "type": "org.springframework.core.annotation.Order"
+    },
+    {
+      "type": "org.springframework.hateoas.server.mvc.TypeConstrainedMappingJackson2HttpMessageConverter"
+    },
+    {
+      "type": "org.springframework.http.converter.json.GsonHttpMessageConverter"
+    },
+    {
+      "type": "org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"
+    },
+    {
+      "type": "org.springframework.stereotype.Component"
+    },
+    {
+      "type": "org.springframework.stereotype.Controller"
+    },
+    {
+      "type": "org.springframework.stereotype.Indexed"
+    },
+    {
+      "type": "org.springframework.web.bind.annotation.ExceptionHandler"
+    },
+    {
+      "type": "org.springframework.web.bind.annotation.GetMapping"
+    },
+    {
+      "type": "org.springframework.web.bind.annotation.Mapping"
+    },
+    {
+      "type": "org.springframework.web.bind.annotation.RequestMapping"
+    },
+    {
+      "type": "org.springframework.web.bind.annotation.ResponseBody"
+    },
+    {
+      "type": "org.springframework.web.bind.annotation.RestController"
+    },
+    {
+      "type": "org.springframework.web.context.ConfigurableWebApplicationContext"
+    },
+    {
+      "type": "org.springframework.web.context.ServletContextAware"
+    },
+    {
+      "type": "org.springframework.web.context.support.ServletContextResource"
+    },
+    {
+      "type": "org.springframework.web.filter.CharacterEncodingFilter"
+    },
+    {
+      "type": "org.springframework.web.filter.FormContentFilter"
+    },
+    {
+      "type": "org.springframework.web.filter.GenericFilterBean"
+    },
+    {
+      "type": "org.springframework.web.filter.OncePerRequestFilter"
+    },
+    {
+      "type": "org.springframework.web.filter.RequestContextFilter"
+    },
+    {
+      "type": "org.springframework.web.reactive.DispatcherHandler"
+    },
+    {
+      "type": "org.springframework.web.servlet.config.annotation.DelegatingWebMvcConfiguration"
+    },
+    {
+      "type": "org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport"
+    },
+    {
+      "type": "org.springframework.web.servlet.config.annotation.WebMvcConfigurer"
+    },
+    {
+      "type": "org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$EmptyHandler"
+    },
+    {
+      "type": "org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping$HttpOptionsHandler"
+    },
+    {
+      "type": "org.thymeleaf.spring6.SpringTemplateEngine"
+    },
+    {
+      "type": "org.yaml.snakeyaml.Yaml"
+    },
+    {
+      "type": "reactor.core.publisher.Flux"
+    },
+    {
+      "type": "reactor.netty.http.client.HttpClient"
+    },
+    {
+      "type": "reactor.tools.agent.ReactorDebugAgent"
+    },
+    {
+      "type": "sun.security.provider.MD5",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": "sun.security.provider.NativePRNG",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": [
+            "java.security.SecureRandomParameters"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "sun.security.provider.SHA",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "type": {
+        "proxy": [
+          "java.lang.reflect.ParameterizedType",
+          "org.springframework.core.SerializableTypeWrapper$SerializableTypeProxy",
+          "java.io.Serializable"
+        ]
+      }
+    },
+    {
+      "type": {
+        "proxy": [
+          "java.lang.reflect.WildcardType",
+          "org.springframework.core.SerializableTypeWrapper$SerializableTypeProxy",
+          "java.io.Serializable"
+        ]
+      }
+    },
+    {
+      "type": {
+        "proxy": [
+          "org.springframework.boot.context.properties.ConfigurationProperties"
+        ]
+      }
+    },
+    {
+      "type": {
+        "proxy": [
+          "org.springframework.web.bind.annotation.RequestMapping"
+        ]
+      }
+    }
+  ],
+  "resources": [
+    {
+      "glob": ""
+    },
+    {
+      "glob": "META-INF/resources/index.html"
+    },
+    {
+      "glob": "META-INF/services/ch.qos.logback.classic.spi.Configurator"
+    },
+    {
+      "glob": "META-INF/services/jakarta.websocket.server.ServerEndpointConfig$Configurator"
+    },
+    {
+      "glob": "META-INF/services/java.lang.System$LoggerFinder"
+    },
+    {
+      "glob": "META-INF/services/java.net.spi.URLStreamHandlerProvider"
+    },
+    {
+      "glob": "META-INF/services/java.nio.channels.spi.SelectorProvider"
+    },
+    {
+      "glob": "META-INF/services/java.sql.Driver"
+    },
+    {
+      "glob": "META-INF/services/java.time.zone.ZoneRulesProvider"
+    },
+    {
+      "glob": "META-INF/services/java.util.spi.ResourceBundleControlProvider"
+    },
+    {
+      "glob": "META-INF/services/org.apache.juli.logging.Log"
+    },
+    {
+      "glob": "META-INF/services/org.slf4j.spi.SLF4JServiceProvider"
+    },
+    {
+      "glob": "META-INF/spring.factories"
+    },
+    {
+      "glob": "META-INF/spring.integration.properties"
+    },
+    {
+      "glob": "META-INF/spring/logback-pattern-rules"
+    },
+    {
+      "glob": "application-default.properties"
+    },
+    {
+      "glob": "application-default.xml"
+    },
+    {
+      "glob": "application-default.yaml"
+    },
+    {
+      "glob": "application-default.yml"
+    },
+    {
+      "glob": "application.properties"
+    },
+    {
+      "glob": "application.xml"
+    },
+    {
+      "glob": "application.yaml"
+    },
+    {
+      "glob": "application.yml"
+    },
+    {
+      "glob": "banner.txt"
+    },
+    {
+      "glob": "config/application-default.properties"
+    },
+    {
+      "glob": "config/application-default.xml"
+    },
+    {
+      "glob": "config/application-default.yaml"
+    },
+    {
+      "glob": "config/application-default.yml"
+    },
+    {
+      "glob": "config/application.properties"
+    },
+    {
+      "glob": "config/application.xml"
+    },
+    {
+      "glob": "config/application.yaml"
+    },
+    {
+      "glob": "config/application.yml"
+    },
+    {
+      "glob": "jakarta/servlet/http/LocalStrings.properties"
+    },
+    {
+      "glob": "jakarta/servlet/http/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "jakarta/servlet/http/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "jakarta/servlet/http/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "jakarta/servlet/http/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "jndi.properties"
+    },
+    {
+      "glob": "logback-spring.groovy"
+    },
+    {
+      "glob": "logback-spring.xml"
+    },
+    {
+      "glob": "logback-test-spring.groovy"
+    },
+    {
+      "glob": "logback-test-spring.xml"
+    },
+    {
+      "glob": "logback-test.groovy"
+    },
+    {
+      "glob": "logback-test.scmo"
+    },
+    {
+      "glob": "logback-test.xml"
+    },
+    {
+      "glob": "logback.groovy"
+    },
+    {
+      "glob": "logback.scmo"
+    },
+    {
+      "glob": "logback.xml"
+    },
+    {
+      "glob": "org/apache/catalina/authenticator/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/catalina/authenticator/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/catalina/authenticator/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/authenticator/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/catalina/authenticator/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/authenticator/jaspic/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/catalina/authenticator/jaspic/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/catalina/authenticator/jaspic/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/authenticator/jaspic/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/catalina/authenticator/jaspic/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/connector/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/catalina/connector/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/catalina/connector/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/connector/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/catalina/connector/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/core/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/catalina/core/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/catalina/core/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/core/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/catalina/core/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/core/RestrictedFilters.properties"
+    },
+    {
+      "glob": "org/apache/catalina/core/RestrictedListeners.properties"
+    },
+    {
+      "glob": "org/apache/catalina/core/RestrictedServlets.properties"
+    },
+    {
+      "glob": "org/apache/catalina/deploy/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/catalina/deploy/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/catalina/deploy/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/deploy/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/catalina/deploy/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/loader/JdbcLeakPrevention.class"
+    },
+    {
+      "glob": "org/apache/catalina/loader/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/catalina/loader/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/catalina/loader/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/loader/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/catalina/loader/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/mapper/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/catalina/mapper/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/catalina/mapper/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/mapper/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/catalina/mapper/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/mbeans/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/catalina/mbeans/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/catalina/mbeans/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/mbeans/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/catalina/mbeans/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/realm/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/catalina/realm/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/catalina/realm/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/realm/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/catalina/realm/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/security/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/catalina/security/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/catalina/security/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/security/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/catalina/security/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/session/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/catalina/session/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/catalina/session/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/session/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/catalina/session/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/startup/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/catalina/startup/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/catalina/startup/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/startup/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/catalina/startup/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/util/CharsetMapperDefault.properties"
+    },
+    {
+      "glob": "org/apache/catalina/util/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/catalina/util/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/catalina/util/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/util/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/catalina/util/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/util/ServerInfo.properties"
+    },
+    {
+      "glob": "org/apache/catalina/valves/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/catalina/valves/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/catalina/valves/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/valves/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/catalina/valves/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/webresources/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/catalina/webresources/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/catalina/webresources/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/catalina/webresources/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/catalina/webresources/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/coyote/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/coyote/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/coyote/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/coyote/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/coyote/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/coyote/http11/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/coyote/http11/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/coyote/http11/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/coyote/http11/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/coyote/http11/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/coyote/http11/filters/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/coyote/http11/filters/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/coyote/http11/filters/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/coyote/http11/filters/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/coyote/http11/filters/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/naming/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/naming/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/naming/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/naming/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/naming/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/buf/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/buf/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/buf/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/buf/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/buf/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/collections/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/collections/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/collections/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/collections/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/collections/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/compat/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/compat/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/compat/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/compat/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/compat/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/descriptor/web/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/descriptor/web/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/descriptor/web/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/descriptor/web/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/descriptor/web/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/http/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/http/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/http/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/http/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/http/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/http/parser/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/http/parser/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/http/parser/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/http/parser/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/http/parser/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/modeler/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/modeler/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/modeler/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/modeler/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/modeler/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/net/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/net/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/net/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/net/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/net/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/scan/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/scan/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/scan/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/scan/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/scan/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/security/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/security/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/security/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/security/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/security/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/threads/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/threads/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/threads/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/threads/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/util/threads/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/websocket/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/websocket/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/websocket/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/websocket/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/websocket/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/websocket/pojo/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/websocket/pojo/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/websocket/pojo/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/websocket/pojo/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/websocket/pojo/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/websocket/server/LocalStrings.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/websocket/server/LocalStrings_zh.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/websocket/server/LocalStrings_zh_CN.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/websocket/server/LocalStrings_zh_Hans.properties"
+    },
+    {
+      "glob": "org/apache/tomcat/websocket/server/LocalStrings_zh_Hans_CN.properties"
+    },
+    {
+      "glob": "public/index.html"
+    },
+    {
+      "glob": "resources/index.html"
+    },
+    {
+      "glob": "spring.properties"
+    },
+    {
+      "glob": "static/index.html"
+    }
+  ],
+  "bundles": [
+    {
+      "name": "jakarta.servlet.http.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.catalina.authenticator.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.catalina.authenticator.jaspic.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.catalina.connector.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.catalina.core.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.catalina.deploy.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.catalina.loader.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.catalina.mapper.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.catalina.mbeans.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.catalina.realm.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.catalina.security.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.catalina.session.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.catalina.startup.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.catalina.util.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.catalina.valves.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.catalina.webresources.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.coyote.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.coyote.http11.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.coyote.http11.filters.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.naming.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.tomcat.util.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.tomcat.util.buf.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.tomcat.util.collections.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.tomcat.util.compat.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.tomcat.util.descriptor.web.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.tomcat.util.http.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.tomcat.util.http.parser.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.tomcat.util.modeler.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.tomcat.util.net.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.tomcat.util.scan.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.tomcat.util.security.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.tomcat.util.threads.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.tomcat.websocket.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.tomcat.websocket.pojo.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    },
+    {
+      "name": "org.apache.tomcat.websocket.server.LocalStrings",
+      "locales": [
+        "zh-CN"
+      ]
+    }
+  ],
+  "jni": [
+    {
+      "type": "java.lang.Boolean",
+      "methods": [
+        {
+          "name": "getBoolean",
+          "parameterTypes": [
+            "java.lang.String"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "sun.management.VMManagementImpl",
+      "fields": [
+        {
+          "name": "compTimeMonitoringSupport"
+        },
+        {
+          "name": "currentThreadCpuTimeSupport"
+        },
+        {
+          "name": "objectMonitorUsageSupport"
+        },
+        {
+          "name": "otherThreadCpuTimeSupport"
+        },
+        {
+          "name": "remoteDiagnosticCommandsSupport"
+        },
+        {
+          "name": "synchronizerUsageSupport"
+        },
+        {
+          "name": "threadAllocatedMemorySupport"
+        },
+        {
+          "name": "threadContentionMonitoringSupport"
+        }
+      ]
+    }
+  ]
+}
