@@ -25,11 +25,10 @@ import java.util.concurrent.TimeUnit;
  * @description HttpClient 工具类
  * @date 2025/3/1 17:10
  */
-@Component
 @Slf4j
 public class HttpClientUtil {
 
-    private static volatile OkHttpClient client = null;
+    private final OkHttpClient client;
 
     private final Map<String, String> headers;
     private final Map<String, Object> params;
@@ -50,7 +49,8 @@ public class HttpClientUtil {
                 .hostnameVerifier((hostname, session) -> true)
                 .retryOnConnectionFailure(true)
                 .build();
-        addHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36");
+        addHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like " +
+                "Gecko) Chrome/63.0.3239.132 Safari/537.36");
     }
 
     public static HttpClientUtil builder() {

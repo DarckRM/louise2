@@ -1,9 +1,10 @@
-server:
-  port: 8099
-
 spring:
+  profiles:
+    active: dev
   output:
     ansi:
       enabled: ALWAYS
+
   application:
     name: louise2
+

@@ -2,6 +2,7 @@ package akarin.bot.louise2.features.common;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 
 import java.lang.reflect.InvocationTargetException;
@@ -17,6 +18,7 @@ import java.util.List;
  */
 @Data
 @Accessors(chain = true)
+@Slf4j
 public class FeatureMethod implements FeatureMethodInterface {
 
     private FeatureInterface featureInterface;
@@ -35,7 +37,8 @@ public class FeatureMethod implements FeatureMethodInterface {
     public void execute(Object... args) {
         try {
             method.invoke(featureInterface, args);
-        } catch (IllegalAccessException | InvocationTargetException ignore) {
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            log.error("执行功能方法时发生错误", e);
         }
     }
 }
