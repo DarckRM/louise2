@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author akarin
  * @version 1.0
- * @description TODO))
+ * @description 测试用 Controller
  * @date 2025/2/13 16:36
  */
 @RestController

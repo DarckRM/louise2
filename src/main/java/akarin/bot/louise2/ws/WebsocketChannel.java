@@ -1,10 +1,12 @@
 package akarin.bot.louise2.ws;
 
+import akarin.bot.louise2.domain.common.Context;
 import akarin.bot.louise2.domain.onebot.event.PostEvent;
-import akarin.bot.louise2.domain.onebot.event.message.GroupMessageEvent;
 import akarin.bot.louise2.domain.onebot.event.message.MessageEvent;
-import akarin.bot.louise2.domain.onebot.event.meta.HeartbeatEvent;
 import akarin.bot.louise2.domain.onebot.event.meta.MetaEvent;
+import akarin.bot.louise2.domain.onebot.event.notification.NotificationEvent;
+import akarin.bot.louise2.features.common.FeatureManager;
+import akarin.bot.louise2.features.common.FeatureMethodInterface;
 import akarin.bot.louise2.ws.converter.PostDecoder;
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.OnMessage;
@@ -18,15 +20,18 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author akarin
  * @version 1.0
- * @description TODO))
+ * @description WebSocket 服务端
  * @date 2025/2/13 16:15
  */
 @Component
 @Slf4j
-@ServerEndpoint(value = "/ws/onebot", decoders = {PostDecoder.class})
+@ServerEndpoint(value = "/onebot/v11", decoders = {PostDecoder.class})
 public class WebsocketChannel implements ApplicationContextAware {
     private static ApplicationContext context;
     private Session session;
@@ -44,10 +49,16 @@ public class WebsocketChannel implements ApplicationContextAware {
 
     @OnMessage
     public void onMessage(PostEvent event) {
-        if (event instanceof MetaEvent)
-            handleMetaEvent((MetaEvent) event);
-        else if (event instanceof MessageEvent)
-            handleMessageEvent((MessageEvent) event);
+        List<FeatureMethodInterface> methods = FeatureManager.peekFeature(event);
+        Thread.ofVirtual().start(() -> methods.forEach(m -> {
+            List<Object> parameters = new ArrayList<>();
+            for (Class<?> signature : m.getParameterSignatures()) {
+                // 注入参数
+                if (signature.getSuperclass().equals(PostEvent.class))
+                    parameters.add(event);
+            }
+            m.execute(parameters.toArray());
+        }));
     }
 
     public void handleMetaEvent(MetaEvent event) {
@@ -56,6 +67,17 @@ public class WebsocketChannel implements ApplicationContextAware {
 
 
     public void handleMessageEvent(MessageEvent event) {
-        log.info(event.toString());
+        List<FeatureMethodInterface> methods = FeatureManager.peekFeature(event);
+        methods.forEach(m -> {
+            List<Object> parameters = new ArrayList<>();
+            for (Class<?> signature : m.getParameterSignatures()) {
+                // 校验签名类型并注入
+                if (signature.equals(NotificationEvent.class))
+                    parameters.add(event);
+                if (signature.equals(MessageEvent.class))
+                    parameters.add(event);
+            }
+            m.execute(parameters.toArray());
+        });
     }
 }
