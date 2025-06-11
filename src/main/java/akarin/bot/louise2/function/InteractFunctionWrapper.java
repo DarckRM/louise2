@@ -1,6 +1,7 @@
 package akarin.bot.louise2.function;
 
 import akarin.bot.louise2.domain.onebot.event.api.PostEventInterface;
+import lombok.Getter;
 
 /**
  * @author akarin
@@ -10,23 +11,31 @@ import akarin.bot.louise2.domain.onebot.event.api.PostEventInterface;
  */
 public class InteractFunctionWrapper<T> {
 
+    @Getter
+    private boolean active = true;
+
     private boolean waiting = true;
 
     private final InteractFunction<T> function;
+
+    @Getter
+    private T result;
 
     public InteractFunctionWrapper(InteractFunction<T> function) {
         this.function = function;
     }
 
-    public synchronized void waiting() {
+    public synchronized InteractFunctionWrapper<T> waiting() {
         try {
             while (waiting) {
                 this.wait();
             }
             waiting = true;
+            return this;
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
+        return this;
     }
 
     public synchronized void wakeup() {
@@ -35,7 +44,15 @@ public class InteractFunctionWrapper<T> {
     }
 
     public void execute(PostEventInterface event) {
-        function.execute(event);
+        result = function.execute(event);
+    }
+
+    public void inactive() {
+        this.active = false;
+    }
+
+    public void active() {
+        this.active = true;
     }
 
 }

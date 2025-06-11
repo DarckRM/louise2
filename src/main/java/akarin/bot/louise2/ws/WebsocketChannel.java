@@ -9,7 +9,7 @@ import akarin.bot.louise2.exception.EventContinueException;
 import akarin.bot.louise2.exception.EventFinishedException;
 import akarin.bot.louise2.features.common.FeatureManager;
 import akarin.bot.louise2.features.common.FeatureMethodInterface;
-import akarin.bot.louise2.features.common.WaitingManager;
+import akarin.bot.louise2.features.common.Conversation;
 import akarin.bot.louise2.service.OnebotService;
 import akarin.bot.louise2.ws.converter.PostDecoder;
 import jakarta.websocket.EndpointConfig;
@@ -38,13 +38,13 @@ import java.util.List;
 @ServerEndpoint(value = "/onebot/v11", decoders = {PostDecoder.class})
 public class WebsocketChannel implements ApplicationContextAware {
     private static ApplicationContext context;
-    private static WaitingManager waitingManager;
+    private static Conversation waitingManager;
     private Session session;
 
     @Override
     public void setApplicationContext(@NotNull ApplicationContext context) throws BeansException {
         WebsocketChannel.context = context;
-        WebsocketChannel.waitingManager = context.getBean(WaitingManager.class);
+        WebsocketChannel.waitingManager = context.getBean(Conversation.class);
     }
 
     @OnOpen
@@ -84,7 +84,7 @@ public class WebsocketChannel implements ApplicationContextAware {
                 parameters.add(context.getBean(OnebotService.class));
             else if (signature.equals(LouiseConfig.class))
                 parameters.add(context.getBean(LouiseConfig.class));
-            else if (signature.equals(WaitingManager.class))
+            else if (signature.equals(Conversation.class))
                 parameters.add(waitingManager);
         }
     }

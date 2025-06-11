@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Component
 @Slf4j
-public class WaitingManager {
+public class Conversation {
 
     @Resource
     OnebotService onebotService;
@@ -64,54 +64,62 @@ public class WaitingManager {
     private void dropExpiredFunction() {
         for (Map.Entry<Long, Map<InteractFunctionWrapper<?>, Long>> entry : waitingMap.entrySet()) {
             for (Map.Entry<InteractFunctionWrapper<?>, Long> interactEntry : entry.getValue().entrySet()) {
+                if (!interactEntry.getKey().isActive())
+                    continue;
+
                 interactEntry.setValue(interactEntry.getValue() - (INTERVAL * 1000));
                 // 对于超时的交互会话直接执行
                 if (interactEntry.getValue() <= 0) {
-                    Thread.ofVirtual().start(() -> interactEntry.getKey().execute(null));
+                    interactEntry.getKey().inactive();
+                    interactEntry.getKey().execute(null);
                     interactEntry.getKey().wakeup();
-                    entry.getValue().remove(interactEntry.getKey());
                 }
             }
+
+            // 释放不活跃的包装器
+            entry.getValue().entrySet().removeIf(k -> !k.getKey().isActive());
         }
     }
 
-    public void waiting(String prompt, PostEvent event, InteractFunction<?> function) {
-        waiting(prompt, event, function, DEFAULT_TIMEOUT);
+    public InteractFunctionWrapper<?> waiting(String prompt, PostEvent event, InteractFunction<?> function) {
+        return waiting(prompt, event, function, DEFAULT_TIMEOUT);
     }
 
-    public void waitingSomeone(String prompt, PostEvent event, Long userId, InteractFunction<?> function) {
-        waitingSomeone(prompt, event, userId, function, DEFAULT_TIMEOUT);
+    public InteractFunctionWrapper<?> waitingSomeone(String prompt, PostEvent event, Long userId,
+                                                     InteractFunction<?> function) {
+        return waitingSomeone(prompt, event, userId, function, DEFAULT_TIMEOUT);
     }
 
-    public void waitingSender(String prompt, PostEvent event, InteractFunction<?> function) {
-        waitingSender(prompt, event, function, DEFAULT_TIMEOUT);
+    public InteractFunctionWrapper<?> waitingSender(String prompt, PostEvent event, InteractFunction<?> function) {
+        return waitingSender(prompt, event, function, DEFAULT_TIMEOUT);
     }
 
-    public void waitingSomeone(String prompt, PostEvent event, Long userId, InteractFunction<?> function,
-                               Long timeout) {
+    public InteractFunctionWrapper<?> waitingSomeone(String prompt, PostEvent event, Long userId,
+                                                     InteractFunction<?> function, Long timeout) {
         prepareWait(prompt, event);
         InteractFunctionWrapper<?> wrapper = new InteractFunctionWrapper<>(function);
         waitingMap.computeIfAbsent(userId, k -> new HashMap<>()).put(wrapper, timeout);
-        functionWaiting(wrapper);
+        return functionWaiting(wrapper);
     }
 
-    public void waitingSender(String prompt, PostEvent event, InteractFunction<?> function, Long timeout) {
+    public InteractFunctionWrapper<?> waitingSender(String prompt, PostEvent event, InteractFunction<?> function,
+                                                    Long timeout) {
         if (event instanceof MessageEvent messageEvent) {
             prepareWait(prompt, event);
             InteractFunctionWrapper<?> wrapper = new InteractFunctionWrapper<>(function);
             waitingMap.computeIfAbsent(messageEvent.getSender().getUserId(), k -> new HashMap<>()).put(wrapper,
                     timeout);
-            functionWaiting(wrapper);
+            return functionWaiting(wrapper);
         } else
             throw new IllegalArgumentException("等待原事件用户交互只能用于消息事件！");
     }
 
-    public void waiting(String prompt, PostEvent event, InteractFunction<?> function,
-                        Long timeout) {
+    public InteractFunctionWrapper<?> waiting(String prompt, PostEvent event, InteractFunction<?> function,
+                                              Long timeout) {
         prepareWait(prompt, event);
         InteractFunctionWrapper<?> wrapper = new InteractFunctionWrapper<>(function);
         waitingMap.computeIfAbsent(ALL_USER, k -> new HashMap<>()).put(wrapper, timeout);
-        functionWaiting(wrapper);
+        return functionWaiting(wrapper);
     }
 
     private void prepareWait(String prompt, PostEvent event) {
@@ -126,8 +134,8 @@ public class WaitingManager {
         }
     }
 
-    private void functionWaiting(InteractFunctionWrapper<?> wrapper) {
-        wrapper.waiting();
+    private InteractFunctionWrapper<?> functionWaiting(InteractFunctionWrapper<?> wrapper) {
+        return wrapper.waiting();
     }
 
     public Integer receiveEvent(PostEvent event) {
@@ -152,9 +160,11 @@ public class WaitingManager {
 
         pool.submit(() -> {
             for (Map.Entry<InteractFunctionWrapper<?>, Long> entry : wrappers.entrySet()) {
+                if (!entry.getKey().isActive())
+                    continue;
+                entry.getKey().inactive();
                 entry.getKey().execute(event);
                 entry.getKey().wakeup();
-                wrappers.remove(entry.getKey());
             }
         });
         return 1;

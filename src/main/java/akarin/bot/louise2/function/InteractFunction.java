@@ -10,6 +10,6 @@ import akarin.bot.louise2.domain.onebot.event.api.PostEventInterface;
  */
 public interface InteractFunction<T> {
 
-    void execute(PostEventInterface event);
+    T execute(PostEventInterface event);
 
 }
