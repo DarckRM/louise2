@@ -4,10 +4,12 @@ import akarin.bot.louise2.annotation.features.LouiseFeature;
 import akarin.bot.louise2.annotation.features.OnCommand;
 import akarin.bot.louise2.config.LouiseConfig;
 import akarin.bot.louise2.domain.common.LouiseContext;
+import akarin.bot.louise2.domain.onebot.event.PostEvent;
 import akarin.bot.louise2.domain.onebot.event.message.MessageEvent;
 import akarin.bot.louise2.domain.onebot.model.message.ArrayMessage;
 import akarin.bot.louise2.features.common.Feature;
 import akarin.bot.louise2.features.common.FeatureInterface;
+import akarin.bot.louise2.features.common.WaitingManager;
 import akarin.bot.louise2.service.OnebotService;
 
 /**
@@ -50,7 +52,18 @@ public class TestFeature extends Feature implements FeatureInterface {
                 .image(config.getCachePath() + "/sample.jpg", "file"));
     }
 
-    @OnCommand("!yande")
-    public void yande(OnebotService bot, LouiseConfig config, LouiseContext context) {
+    @OnCommand("!interact")
+    public void testInteract(OnebotService bot, MessageEvent message, LouiseConfig config,
+                             WaitingManager waitingManager) {
+
+        waitingManager.waitingSender("测试交互功能", message, event -> {
+            if (event == null) {
+                bot.sendPrivateMessage(config.getAdminNumber(), new ArrayMessage().text("超时未回复！"));
+                return;
+            }
+
+            bot.sendPrivateMessage(config.getAdminNumber(), new ArrayMessage().text("测试交互功能成功！"));
+        });
+        System.out.println("我执行到这里了");
     }
 }
