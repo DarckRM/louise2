@@ -1,6 +1,5 @@
 package akarin.bot.louise2.domain.onebot.event.notification;
 
-import akarin.bot.louise2.domain.onebot.event.PostEvent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -8,16 +7,15 @@ import lombok.EqualsAndHashCode;
 /**
  * @author akarin
  * @version 1.0
- * @description 通知事件
- * @date 2025/2/13 17:35
+ * @description 群内戳一戳事件
+ * @date 2025/6/11 11:24
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class NotificationEvent extends PostEvent {
-    @JsonProperty("notice_type")
-    String noticeType;
+public class GroupPokeEvent extends NotificationEvent {
+    @JsonProperty("sub_type")
+    String subType;
 
-    Long groupId;
-
-    Long userId;
+    @JsonProperty("target_id")
+    Long targetId;
 }
