@@ -22,6 +22,9 @@ public class FeatureManager {
 
     private static final Map<String, FeatureInterface> featureMap = new HashMap<>();
 
+    private FeatureManager() {
+    }
+
     public static void registerFeature(FeatureInterface feature) {
         featureMap.put(feature.getName(), feature);
     }

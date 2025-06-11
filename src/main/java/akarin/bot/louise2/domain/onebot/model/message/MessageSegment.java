@@ -3,7 +3,6 @@ package akarin.bot.louise2.domain.onebot.model.message;
 import akarin.bot.louise2.domain.enums.onebot.MessageSegmentEnum;
 import com.alibaba.fastjson2.JSONObject;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -33,6 +32,10 @@ public class MessageSegment {
         this.data = data;
     }
 
+    public static MessageSegment at(Long userId) {
+        return new MessageSegment(MessageSegmentEnum.AT, new JSONObject().fluentPut(MessageSegmentEnum.AT.getType(), userId));
+    }
+
     public static MessageSegment text(String text) {
         return new MessageSegment(MessageSegmentEnum.TEXT, new JSONObject().fluentPut(MessageSegmentEnum.TEXT.getType(),
                 text));
@@ -40,7 +43,7 @@ public class MessageSegment {
 
     public static MessageSegment image(String image) {
         return new MessageSegment(MessageSegmentEnum.IMAGE,
-                new JSONObject().fluentPut(MessageSegmentEnum.FILE.getType(), image));
+                new JSONObject().fluentPut(MessageSegmentEnum.MediaType.FILE.getType(), image));
     }
 
 }

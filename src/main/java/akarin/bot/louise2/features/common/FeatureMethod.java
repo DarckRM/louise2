@@ -33,7 +33,6 @@ public class FeatureMethod implements FeatureMethodInterface {
     }
 
     @Override
-    @Async
     public void execute(Object... args) {
         try {
             method.invoke(featureInterface, args);

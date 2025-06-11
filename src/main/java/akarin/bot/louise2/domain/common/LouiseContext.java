@@ -6,10 +6,11 @@ import lombok.Data;
 /**
  * @author akarin
  * @version 1.0
- * @description 上下文
+ * @description Louise 上下文
  * @date 2025/2/14 16:32
  */
 @Data
-public class Context {
+public class LouiseContext {
     private PostEvent event;
+
 }

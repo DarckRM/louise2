@@ -3,12 +3,12 @@ package akarin.bot.louise2.features;
 import akarin.bot.louise2.annotation.features.LouiseFeature;
 import akarin.bot.louise2.annotation.features.OnCommand;
 import akarin.bot.louise2.config.LouiseConfig;
+import akarin.bot.louise2.domain.common.LouiseContext;
 import akarin.bot.louise2.domain.onebot.event.message.MessageEvent;
 import akarin.bot.louise2.domain.onebot.model.message.ArrayMessage;
 import akarin.bot.louise2.features.common.Feature;
 import akarin.bot.louise2.features.common.FeatureInterface;
 import akarin.bot.louise2.service.OnebotService;
-import jakarta.annotation.Resource;
 
 /**
  * @author akarin
@@ -48,5 +48,9 @@ public class TestFeature extends Feature implements FeatureInterface {
     public void testImageSend(OnebotService bot, LouiseConfig config) {
         bot.sendPrivateMessage(config.getAdminNumber(), new ArrayMessage().text("测试图片发送！")
                 .image(config.getCachePath() + "/sample.jpg", "file"));
+    }
+
+    @OnCommand("!yande")
+    public void yande(OnebotService bot, LouiseConfig config, LouiseContext context) {
     }
 }

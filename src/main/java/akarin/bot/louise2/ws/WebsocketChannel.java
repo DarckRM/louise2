@@ -1,11 +1,12 @@
 package akarin.bot.louise2.ws;
 
 import akarin.bot.louise2.config.LouiseConfig;
-import akarin.bot.louise2.domain.common.Context;
 import akarin.bot.louise2.domain.onebot.event.PostEvent;
 import akarin.bot.louise2.domain.onebot.event.message.MessageEvent;
 import akarin.bot.louise2.domain.onebot.event.meta.MetaEvent;
 import akarin.bot.louise2.domain.onebot.event.notification.NotificationEvent;
+import akarin.bot.louise2.exception.EventContinueException;
+import akarin.bot.louise2.exception.EventFinishedException;
 import akarin.bot.louise2.features.common.FeatureManager;
 import akarin.bot.louise2.features.common.FeatureMethodInterface;
 import akarin.bot.louise2.service.OnebotService;
@@ -35,12 +36,12 @@ import java.util.List;
 @Slf4j
 @ServerEndpoint(value = "/onebot/v11", decoders = {PostDecoder.class})
 public class WebsocketChannel implements ApplicationContextAware {
-    private static ApplicationContext context;
+    private ApplicationContext context;
     private Session session;
 
     @Override
     public void setApplicationContext(@NotNull ApplicationContext context) throws BeansException {
-        WebsocketChannel.context = context;
+        this.context = context;
     }
 
     @OnOpen
@@ -52,19 +53,28 @@ public class WebsocketChannel implements ApplicationContextAware {
     @OnMessage
     public void onMessage(PostEvent event) {
         List<FeatureMethodInterface> methods = FeatureManager.peekFeature(event);
-        Thread.ofVirtual().start(() -> methods.forEach(m -> {
-            List<Object> parameters = new ArrayList<>();
-            for (Class<?> signature : m.getParameterSignatures()) {
-                // 根据 Method 定义的参数列表注入参数
-                if (PostEvent.class.isAssignableFrom(signature))
-                    parameters.add(event);
-                else if (signature.equals(OnebotService.class))
-                    parameters.add(context.getBean(OnebotService.class));
-                else if (signature.equals(LouiseConfig.class))
-                    parameters.add(context.getBean(LouiseConfig.class));
+        Thread.ofVirtual().start(() -> {
+            for (FeatureMethodInterface m : methods) {
+                List<Object> parameters = new ArrayList<>();
+                for (Class<?> signature : m.getParameterSignatures()) {
+                    // 根据 Method 定义的参数列表注入参数
+                    if (PostEvent.class.isAssignableFrom(signature))
+                        parameters.add(event);
+                    else if (signature.equals(OnebotService.class))
+                        parameters.add(context.getBean(OnebotService.class));
+                    else if (signature.equals(LouiseConfig.class))
+                        parameters.add(context.getBean(LouiseConfig.class));
+                }
+                try {
+                    m.execute(parameters.toArray());
+                } catch (EventContinueException continueException) {
+                    log.debug("{} 功能 - {} 方法跳过了事件流", m.getFeatureInterface().getName(), m.getMethod().getName());
+                } catch (EventFinishedException finishedException) {
+                    log.debug("{} 功能 - {} 方法结束了事件流", m.getFeatureInterface().getName(), m.getMethod().getName());
+                    return;
+                }
             }
-            m.execute(parameters.toArray());
-        }));
+        });
     }
 
     public void handleMetaEvent(MetaEvent event) {

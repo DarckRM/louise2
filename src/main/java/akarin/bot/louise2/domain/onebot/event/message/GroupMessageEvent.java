@@ -2,6 +2,8 @@ package akarin.bot.louise2.domain.onebot.event.message;
 
 import akarin.bot.louise2.domain.onebot.model.message.Anonymous;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author akarin
@@ -9,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @description 群聊消息事件
  * @date 2025/2/13 18:15
  */
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class GroupMessageEvent extends MessageEvent {
 
     // 发送群 QQ 号

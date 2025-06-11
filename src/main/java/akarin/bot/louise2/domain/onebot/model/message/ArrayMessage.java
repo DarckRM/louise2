@@ -20,6 +20,12 @@ public class ArrayMessage implements Message {
 
     private final List<MessageSegment> messages = new ArrayList<>();
 
+    public ArrayMessage at(Long userId) {
+        MessageSegment segment = MessageSegment.at(userId);
+        messages.add(segment);
+        return this;
+    }
+
     public ArrayMessage text(String text) {
         MessageSegment segment = MessageSegment.text(text);
         messages.add(segment);

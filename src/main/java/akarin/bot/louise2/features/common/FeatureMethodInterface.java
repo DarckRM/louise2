@@ -1,8 +1,8 @@
 package akarin.bot.louise2.features.common;
 
 import akarin.bot.louise2.domain.onebot.event.PostEvent;
-import org.springframework.scheduling.annotation.Async;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -12,6 +12,10 @@ import java.util.List;
  * @date 2025/6/4 15:35
  */
 public interface FeatureMethodInterface {
+
+    FeatureInterface getFeatureInterface();
+
+    Method getMethod();
 
     List<Class<?>> getParameterSignatures();
 
