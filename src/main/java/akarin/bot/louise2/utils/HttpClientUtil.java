@@ -122,6 +122,15 @@ public class HttpClientUtil {
         }
     }
 
+    public Response syncResp() {
+        try {
+            return client.newCall(build()).execute();
+        } catch (IOException e) {
+            log.error("请求失败: ", e);
+            return null;
+        }
+    }
+
     /**
      * @author akarin
      * @description 默认处理函数异步请求

@@ -5,15 +5,18 @@ import akarin.bot.louise2.annotation.features.OnCommand;
 import akarin.bot.louise2.features.common.FeatureInterface;
 import akarin.bot.louise2.features.common.FeatureManager;
 import akarin.bot.louise2.features.common.FeatureMethod;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 import java.io.File;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -26,6 +29,9 @@ import java.util.Objects;
 @MapperScan("akarin.bot.louise2.mapper")
 @Slf4j
 public class Louise2Application implements ApplicationRunner {
+
+    @Resource
+    ApplicationContext context;
 
     public static void main(String[] args) {
         SpringApplication.run(Louise2Application.class, args);
@@ -45,7 +51,32 @@ public class Louise2Application implements ApplicationRunner {
                     continue;
 
                 Class<?> clazz = Class.forName(resources + "." + file.getName().replace(".class", ""));
-                FeatureInterface feature = (FeatureInterface) clazz.newInstance();
+                // 跳过内部类和匿名类
+                if (clazz.isAnonymousClass() || clazz.isLocalClass() || clazz.isMemberClass())
+                    continue;
+
+                FeatureInterface feature;
+                // 构造器依赖注入
+                if (clazz.getDeclaredConstructors().length == 0) {
+                    feature = (FeatureInterface) clazz.getConstructor().newInstance();
+                } else if (clazz.getDeclaredConstructors().length == 1) {
+                    Constructor<?> constructor = clazz.getDeclaredConstructors()[0];
+                    List<Object> parameters = new ArrayList<>();
+                    for (Class<?> paramType : constructor.getParameterTypes())
+                        parameters.add(context.getBean(paramType));
+                    feature = (FeatureInterface) constructor.newInstance(parameters.toArray());
+                } else {
+                    throw new IllegalArgumentException("功能模块 " + clazz.getName() + " 的有参构造器数量不正确");
+                }
+
+                // 获取类注解
+                String prefix = "";
+                for (Annotation annotation : clazz.getDeclaredAnnotations()) {
+                    if (annotation instanceof LouiseFeature louiseAnno) {
+                        prefix = louiseAnno.prefix();
+                        feature.setName(louiseAnno.name());
+                    }
+                }
 
                 // 获取注解方法
                 for (Method method : clazz.getDeclaredMethods()) {
@@ -55,8 +86,12 @@ public class Louise2Application implements ApplicationRunner {
                                 .addAll(Arrays.stream(method.getParameterTypes()).toList());
 
                         if (methodAnno instanceof OnCommand commands) {
+                            if (prefix.isEmpty()) {
+                                log.error("插件 {} 的命令前缀为空, 跳过注入 {}", feature.getName(), commands.value());
+                                continue;
+                            }
                             for (String command : commands.value())
-                                feature.addCommandMethod(command, featureMethod);
+                                feature.addCommandMethod(prefix + command, featureMethod);
                             feature.getMethods().add(featureMethod);
                         }
                     }

@@ -1,6 +1,9 @@
 package akarin.bot.louise2.service.impl;
 
 import akarin.bot.louise2.config.LouiseConfig;
+import akarin.bot.louise2.domain.onebot.event.PostEvent;
+import akarin.bot.louise2.domain.onebot.event.message.GroupMessageEvent;
+import akarin.bot.louise2.domain.onebot.event.message.MessageEvent;
 import akarin.bot.louise2.domain.onebot.model.api.Message;
 import akarin.bot.louise2.service.OnebotService;
 import akarin.bot.louise2.utils.HttpClientUtil;
@@ -23,6 +26,14 @@ public class NapCatBotImpl implements OnebotService {
     private LouiseConfig config;
 
     @Override
+    public void sendMessage(PostEvent event, Message message) {
+        if (event instanceof GroupMessageEvent groupEvent)
+            sendGroupMessage(groupEvent.getGroupId(), message);
+        else if (event instanceof MessageEvent messageEvent)
+            sendPrivateMessage(messageEvent.getUserId(), message);
+    }
+
+    @Override
     public void sendPrivateMessage(Long userId, Message message) {
         JSONObject body = new JSONObject();
         body.put("user_id", userId);
@@ -42,5 +53,10 @@ public class NapCatBotImpl implements OnebotService {
                 .sync();
 
         log.info(sync);
+    }
+
+    @Override
+    public void reply(PostEvent event, Message message) {
+        sendMessage(event, message);
     }
 }

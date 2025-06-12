@@ -1,6 +1,7 @@
 package akarin.bot.louise2.ws;
 
 import akarin.bot.louise2.config.LouiseConfig;
+import akarin.bot.louise2.domain.common.LouiseContext;
 import akarin.bot.louise2.domain.onebot.event.PostEvent;
 import akarin.bot.louise2.domain.onebot.event.message.MessageEvent;
 import akarin.bot.louise2.domain.onebot.event.meta.MetaEvent;
@@ -11,6 +12,7 @@ import akarin.bot.louise2.features.common.FeatureManager;
 import akarin.bot.louise2.features.common.FeatureMethodInterface;
 import akarin.bot.louise2.features.common.Conversation;
 import akarin.bot.louise2.service.OnebotService;
+import akarin.bot.louise2.utils.LouiseThreadPool;
 import akarin.bot.louise2.ws.converter.PostDecoder;
 import jakarta.websocket.EndpointConfig;
 import jakarta.websocket.OnMessage;
@@ -84,8 +86,12 @@ public class WebsocketChannel implements ApplicationContextAware {
                 parameters.add(context.getBean(OnebotService.class));
             else if (signature.equals(LouiseConfig.class))
                 parameters.add(context.getBean(LouiseConfig.class));
+            else if (signature.equals(LouiseThreadPool.class))
+                parameters.add(context.getBean(LouiseThreadPool.class));
             else if (signature.equals(Conversation.class))
                 parameters.add(waitingManager);
+            else if (signature.equals(LouiseContext.class))
+                parameters.add(new LouiseContext(event, context.getBean(OnebotService.class)));
         }
     }
 

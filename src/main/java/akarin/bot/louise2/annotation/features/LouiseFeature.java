@@ -16,4 +16,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface LouiseFeature {
     String name() default "";
+
+    String prefix() default "";
 }

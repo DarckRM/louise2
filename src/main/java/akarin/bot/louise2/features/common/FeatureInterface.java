@@ -15,6 +15,8 @@ public interface FeatureInterface {
 
     String getName();
 
+    void setName(String name);
+
     void setMethods(List<FeatureMethodInterface> methods);
 
     List<FeatureMethodInterface> getMethods();

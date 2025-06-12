@@ -1,5 +1,6 @@
 package akarin.bot.louise2.service;
 
+import akarin.bot.louise2.domain.onebot.event.PostEvent;
 import akarin.bot.louise2.domain.onebot.model.api.Message;
 
 /**
@@ -9,6 +10,8 @@ import akarin.bot.louise2.domain.onebot.model.api.Message;
  * @date 2025/6/6 14:18
  */
 public interface OnebotMessageService {
+
+    void sendMessage(PostEvent event, Message message);
 
     void sendPrivateMessage(Long userId, Message message);
 

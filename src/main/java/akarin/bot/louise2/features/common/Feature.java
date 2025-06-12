@@ -20,6 +20,8 @@ import java.util.regex.Pattern;
 @Data
 public class Feature implements FeatureInterface {
 
+    private String name;
+
     private Map<String, List<FeatureMethodInterface>> commandMethods = new HashMap<>();
 
     private Map<String, List<FeatureMethodInterface>> messageMethods = new HashMap<>();
@@ -32,7 +34,8 @@ public class Feature implements FeatureInterface {
 
     @Override
     public List<FeatureMethodInterface> getCommandMethods(String command) {
-        return commandMethods.getOrDefault(command, new ArrayList<>());
+        String[] split = command.split(" ");
+        return commandMethods.getOrDefault(split[0], new ArrayList<>());
     }
 
     @Override
