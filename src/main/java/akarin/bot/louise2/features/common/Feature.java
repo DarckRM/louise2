@@ -81,11 +81,6 @@ public class Feature implements FeatureInterface {
     }
 
     @Override
-    public String getName() {
-        return "";
-    }
-
-    @Override
     public boolean permission() {
         return false;
     }

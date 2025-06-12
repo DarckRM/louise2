@@ -14,10 +14,6 @@ import akarin.bot.louise2.features.common.FeatureInterface;
  */
 @LouiseFeature(name = "测试功能2")
 public class TestFeature2 extends Feature implements FeatureInterface {
-    @Override
-    public String getName() {
-        return "测试功能2";
-    }
 
     @Override
     public boolean permission() {

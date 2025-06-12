@@ -1,5 +1,6 @@
 package akarin.bot.louise2;
 
+import akarin.bot.louise2.annotation.features.FeatureAuth;
 import akarin.bot.louise2.annotation.features.LouiseFeature;
 import akarin.bot.louise2.annotation.features.OnCommand;
 import akarin.bot.louise2.features.common.FeatureInterface;
@@ -80,14 +81,28 @@ public class Louise2Application implements ApplicationRunner {
 
                 // 获取注解方法
                 for (Method method : clazz.getDeclaredMethods()) {
+                    FeatureMethod featureMethod = new FeatureMethod(feature, method);
+                    featureMethod.getParameterSignatures()
+                            .addAll(Arrays.stream(method.getParameterTypes()).toList());
                     for (Annotation methodAnno : method.getDeclaredAnnotations()) {
-                        FeatureMethod featureMethod = new FeatureMethod(feature, method);
-                        featureMethod.getParameterSignatures()
-                                .addAll(Arrays.stream(method.getParameterTypes()).toList());
+                        // 为方法处理权限控制注解
+                        if (methodAnno instanceof FeatureAuth auth) {
+                            long cooldown = Long.parseLong(auth.cooldown());
+                            if (cooldown < 0) {
+                                log.warn("插件 {} 的命令 {} 的冷却时间小于 0, 已忽略", feature.getName(), method.getName());
+                                cooldown = 0;
+                            }
+                            featureMethod.setCooldown(cooldown * 1000);
+
+                            String methodName = auth.name();
+                            if (methodName.isEmpty())
+                                methodName = method.getName();
+                            featureMethod.setMethodName(methodName);
+                        }
 
                         if (methodAnno instanceof OnCommand commands) {
                             if (prefix.isEmpty()) {
-                                log.error("插件 {} 的命令前缀为空, 跳过注入 {}", feature.getName(), commands.value());
+                                log.warn("插件 {} 的命令前缀为空, 跳过注入 {}", feature.getName(), commands.value());
                                 continue;
                             }
                             for (String command : commands.value())

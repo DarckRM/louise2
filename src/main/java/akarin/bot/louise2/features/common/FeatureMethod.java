@@ -1,6 +1,7 @@
 package akarin.bot.louise2.features.common;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
@@ -8,7 +9,9 @@ import org.springframework.scheduling.annotation.Async;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author akarin
@@ -21,6 +24,12 @@ import java.util.List;
 @Slf4j
 public class FeatureMethod implements FeatureMethodInterface {
 
+    private String methodName;
+
+    private Map<Long, Long> invokeRecord = new HashMap<>();
+
+    private Long cooldown = 1000L;
+
     private FeatureInterface featureInterface;
 
     private final List<Class<?>> parameterSignatures = new ArrayList<>();
@@ -30,6 +39,16 @@ public class FeatureMethod implements FeatureMethodInterface {
     public FeatureMethod(FeatureInterface featureInterface, Method method) {
         this.featureInterface = featureInterface;
         this.method = method;
+    }
+
+    @Override
+    public void recordInvoke(Long userId, Long time) {
+        invokeRecord.put(userId, time);
+    }
+
+    @Override
+    public Long recentInvoke(Long userId) {
+        return invokeRecord.getOrDefault(userId, 0L);
     }
 
     @Override

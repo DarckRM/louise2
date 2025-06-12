@@ -13,6 +13,17 @@ import java.util.List;
  */
 public interface FeatureMethodInterface {
 
+    String getMethodName();
+    FeatureMethodInterface setMethodName(String name);
+
+    void recordInvoke(Long userId, Long time);
+
+    Long recentInvoke(Long userId);
+
+    Long getCooldown();
+
+    FeatureMethodInterface setCooldown(Long cooldown);
+
     FeatureInterface getFeatureInterface();
 
     Method getMethod();
@@ -24,6 +35,7 @@ public interface FeatureMethodInterface {
     default boolean permission(PostEvent event) {
         return true;
     }
+
     default boolean cooldown(PostEvent event) {
         return true;
     }

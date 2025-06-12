@@ -3,9 +3,12 @@ package akarin.bot.louise2.ws;
 import akarin.bot.louise2.config.LouiseConfig;
 import akarin.bot.louise2.domain.common.LouiseContext;
 import akarin.bot.louise2.domain.onebot.event.PostEvent;
+import akarin.bot.louise2.domain.onebot.event.message.GroupMessageEvent;
 import akarin.bot.louise2.domain.onebot.event.message.MessageEvent;
 import akarin.bot.louise2.domain.onebot.event.meta.MetaEvent;
 import akarin.bot.louise2.domain.onebot.event.notification.NotificationEvent;
+import akarin.bot.louise2.domain.onebot.event.request.RequestEvent;
+import akarin.bot.louise2.domain.onebot.model.message.ArrayMessage;
 import akarin.bot.louise2.exception.EventContinueException;
 import akarin.bot.louise2.exception.EventFinishedException;
 import akarin.bot.louise2.features.common.FeatureManager;
@@ -57,6 +60,9 @@ public class WebsocketChannel implements ApplicationContextAware {
 
     @OnMessage
     public void onMessage(PostEvent event) {
+        Long[] triggerInfo = getTriggerInfo(event);
+        Long userId = triggerInfo[0];
+
         // 先处理交互式输入事件
         if (1 == WebsocketChannel.waitingManager.receiveEvent(event))
             return;
@@ -64,17 +70,38 @@ public class WebsocketChannel implements ApplicationContextAware {
         List<FeatureMethodInterface> methods = FeatureManager.peekFeature(event);
         Thread.ofVirtual().start(() -> {
             for (FeatureMethodInterface m : methods) {
-                List<Object> parameters = new ArrayList<>();
-                injectParameters(m, event, parameters);
                 try {
+                    long current = System.currentTimeMillis();
+                    List<Object> parameters = new ArrayList<>();
+                    validFeatureMethod(m, event, current, userId);
+                    injectParameters(m, event, parameters);
+
                     m.execute(parameters.toArray());
+                    m.recordInvoke(userId, current);
                 } catch (EventContinueException continueException) {
+                    log.info("", continueException);
                     log.debug("{} 功能 - {} 方法跳过了事件流", m.getFeatureInterface().getName(), m.getMethod().getName());
                 } catch (EventFinishedException finishedException) {
+                    log.info("", finishedException);
                     log.debug("{} 功能 - {} 方法结束了事件流", m.getFeatureInterface().getName(), m.getMethod().getName());
                 }
             }
         });
+    }
+
+    private void validFeatureMethod(FeatureMethodInterface m, PostEvent event, long current, Long userId) {
+        // 对设置了冷却时间的功能进行检查
+        if (m.getCooldown() != 0L) {
+            long passed = current - m.recentInvoke(userId);
+            if (passed < m.getCooldown()) {
+                OnebotService bot = context.getBean(OnebotService.class);
+                bot.sendMessage(event, new ArrayMessage()
+                        .text(m.getFeatureInterface().getName() + "-" + m.getMethodName() + " 冷却中，请 " + (m.getCooldown() - passed) / 1000 +
+                                " " +
+                                "秒后再试"));
+                throw new EventContinueException("功能 " + m.getFeatureInterface().getName() + "-" + m.getMethodName() + " 冷却中");
+            }
+        }
     }
 
     private void injectParameters(FeatureMethodInterface m, PostEvent event, List<Object> parameters) {
@@ -93,6 +120,25 @@ public class WebsocketChannel implements ApplicationContextAware {
             else if (signature.equals(LouiseContext.class))
                 parameters.add(new LouiseContext(event, context.getBean(OnebotService.class)));
         }
+    }
+
+    private Long[] getTriggerInfo(PostEvent event) {
+        Long[] targets = new Long[2];
+        // 尝试获取触发事件的用户和群组
+        Long userId = 0L;
+        Long groupId = 0L;
+        if (event instanceof MessageEvent messageEvent) {
+            userId = messageEvent.getUserId();
+            if (event instanceof GroupMessageEvent groupMessageEvent)
+                groupId = groupMessageEvent.getGroupId();
+        } else if (event instanceof NotificationEvent notificationEvent) {
+            userId = notificationEvent.getUserId();
+            groupId = notificationEvent.getGroupId();
+        } else if (event instanceof RequestEvent requestEvent)
+            userId = requestEvent.getUserId();
+        targets[0] = userId;
+        targets[1] = groupId;
+        return targets;
     }
 
     public void handleMetaEvent(MetaEvent event) {

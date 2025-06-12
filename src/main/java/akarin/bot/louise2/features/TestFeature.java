@@ -1,5 +1,6 @@
 package akarin.bot.louise2.features;
 
+import akarin.bot.louise2.annotation.features.FeatureAuth;
 import akarin.bot.louise2.annotation.features.LouiseFeature;
 import akarin.bot.louise2.annotation.features.OnCommand;
 import akarin.bot.louise2.config.LouiseConfig;
@@ -60,6 +61,7 @@ public class TestFeature extends Feature implements FeatureInterface {
 
     }
 
+    @FeatureAuth(name = "依赖注入测试", cooldown = "10")
     @OnCommand("test")
     public void testDependencyInject(MessageEvent message, OnebotService bot) {
         bot.sendPrivateMessage(412543224L, new ArrayMessage().text("测试功能成功！"));
@@ -72,6 +74,7 @@ public class TestFeature extends Feature implements FeatureInterface {
     }
 
 
+    @FeatureAuth(cooldown = "10")
     @OnCommand("yande")
     public void yandeDaily(OnebotService bot, MessageEvent message, LouiseConfig config, LouiseContext context) {
         String[] split = message.getRawMessage().split(" ");
