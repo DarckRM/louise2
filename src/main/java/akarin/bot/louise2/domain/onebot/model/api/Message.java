@@ -1,6 +1,6 @@
 package akarin.bot.louise2.domain.onebot.model.api;
 
-import akarin.bot.louise2.domain.onebot.model.message.MessageSegment;
+import akarin.bot.louise2.domain.onebot.model.message.MessageSegmentInterface;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface Message {
 
-    List<MessageSegment> getMessages();
+    List<MessageSegmentInterface> getMessages();
 
-    String toJSON();
+    Object toJSON();
 }

@@ -14,7 +14,7 @@ import lombok.experimental.Accessors;
  */
 @Accessors(chain = true)
 @Data
-public class MessageSegment {
+public class MessageSegment implements MessageSegmentInterface {
 
     @JsonIgnore
     private MessageSegmentEnum typeEnum;

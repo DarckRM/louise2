@@ -5,35 +5,23 @@ import akarin.bot.louise2.annotation.features.LouiseFeature;
 import akarin.bot.louise2.annotation.features.OnCommand;
 import akarin.bot.louise2.config.LouiseConfig;
 import akarin.bot.louise2.domain.common.LouiseContext;
-import akarin.bot.louise2.domain.onebot.event.message.GroupMessageEvent;
 import akarin.bot.louise2.domain.onebot.event.message.MessageEvent;
 import akarin.bot.louise2.domain.onebot.model.message.ArrayMessage;
-import akarin.bot.louise2.exception.EventContinueException;
+import akarin.bot.louise2.domain.onebot.model.message.NodeMessage;
 import akarin.bot.louise2.features.common.Feature;
 import akarin.bot.louise2.features.common.FeatureInterface;
-import akarin.bot.louise2.features.common.Conversation;
-import akarin.bot.louise2.function.InteractFunctionWrapper;
 import akarin.bot.louise2.service.OnebotService;
 import akarin.bot.louise2.utils.HttpClientUtil;
-import akarin.bot.louise2.utils.LouiseThreadPool;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.Response;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.http.MediaType;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Consumer;
 
 /**
  * @author akarin
@@ -68,9 +56,9 @@ public class TestFeature extends Feature implements FeatureInterface {
     }
 
     @OnCommand("image")
-    public void testImageSend(OnebotService bot, LouiseConfig config) {
-        bot.sendPrivateMessage(config.getAdminNumber(), new ArrayMessage().text("测试图片发送！")
-                .image(config.getCachePath() + "/sample.jpg", "file"));
+    public void testImageSend(OnebotService bot, LouiseConfig config, MessageEvent event) {
+        event.reply(NodeMessage.init(c -> c.text("输入测试").text("第二段文本").image(config.getCachePath() + "/sample" +
+                ".jpg")).node(c -> c.text("多节点测试").text("第三段文本").image(config.getCachePath() + "/sample" + ".jpg")));
     }
 
 

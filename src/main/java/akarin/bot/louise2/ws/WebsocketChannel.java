@@ -31,6 +31,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author akarin
@@ -42,14 +43,16 @@ import java.util.List;
 @Slf4j
 @ServerEndpoint(value = "/onebot/v11", decoders = {PostDecoder.class})
 public class WebsocketChannel implements ApplicationContextAware {
-    private static ApplicationContext context;
-    private static Conversation waitingManager;
+    private ApplicationContext context;
+    private Conversation waitingManager;
+    private LouiseConfig config;
     private Session session;
 
     @Override
     public void setApplicationContext(@NotNull ApplicationContext context) throws BeansException {
-        WebsocketChannel.context = context;
-        WebsocketChannel.waitingManager = context.getBean(Conversation.class);
+        this.context = context;
+        this.waitingManager = context.getBean(Conversation.class);
+        this.config = context.getBean(LouiseConfig.class);
     }
 
     @OnOpen
@@ -58,13 +61,24 @@ public class WebsocketChannel implements ApplicationContextAware {
         log.info("[websocket] 连接建立: id = {}", this.session.getId());
     }
 
+    private void outputLog(PostEvent event) {
+        if (!Objects.equals(config.getLogLevel(), "info"))
+            return;
+
+        if (event instanceof MessageEvent messageEvent)
+            log.info("{}({}): {}", messageEvent.getSender().getNickname(), messageEvent.getSender().getUserId(),
+                    messageEvent.getRawMessage());
+    }
+
     @OnMessage
     public void onMessage(PostEvent event) {
+        event.setContext(new LouiseContext(event, context.getBean(OnebotService.class)));
+
         Long[] triggerInfo = getTriggerInfo(event);
         Long userId = triggerInfo[0];
-
+        outputLog(event);
         // 先处理交互式输入事件
-        if (1 == WebsocketChannel.waitingManager.receiveEvent(event))
+        if (1 == this.waitingManager.receiveEvent(event))
             return;
 
         List<FeatureMethodInterface> methods = FeatureManager.peekFeature(event);

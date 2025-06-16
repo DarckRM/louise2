@@ -23,4 +23,6 @@ public class LouiseConfig {
 
     private String token;
 
+    private String logLevel;
+
 }

@@ -17,7 +17,7 @@ import java.util.List;
 @Getter
 public class StringMessage implements Message {
 
-    private final List<MessageSegment> messages;
+    private final List<MessageSegmentInterface> messages;
 
     @Override
     public String toJSON() {

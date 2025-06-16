@@ -4,7 +4,6 @@ import akarin.bot.louise2.domain.onebot.event.PostEvent;
 import akarin.bot.louise2.domain.onebot.model.api.Message;
 import akarin.bot.louise2.service.OnebotService;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author akarin

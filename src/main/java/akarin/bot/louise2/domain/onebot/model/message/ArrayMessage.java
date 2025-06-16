@@ -1,9 +1,7 @@
 package akarin.bot.louise2.domain.onebot.model.message;
 
-import akarin.bot.louise2.domain.enums.onebot.MessageSegmentEnum;
 import akarin.bot.louise2.domain.onebot.model.api.Message;
 import com.alibaba.fastjson2.JSONObject;
-import lombok.Data;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -18,7 +16,7 @@ import java.util.List;
 @Getter
 public class ArrayMessage implements Message {
 
-    private final List<MessageSegment> messages = new ArrayList<>();
+    private final List<MessageSegmentInterface> messages = new ArrayList<>();
 
     public ArrayMessage at(Long userId) {
         MessageSegment segment = MessageSegment.at(userId);
