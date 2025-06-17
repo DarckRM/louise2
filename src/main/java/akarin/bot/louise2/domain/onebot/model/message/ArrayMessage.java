@@ -47,7 +47,7 @@ public class ArrayMessage implements Message {
     }
 
     @Override
-    public String toJSON() {
-        return JSONObject.toJSONString(messages);
+    public List<MessageSegmentInterface> toJSON() {
+        return messages;
     }
 }

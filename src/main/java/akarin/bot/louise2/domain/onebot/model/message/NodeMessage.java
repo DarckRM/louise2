@@ -3,7 +3,6 @@ package akarin.bot.louise2.domain.onebot.model.message;
 import akarin.bot.louise2.domain.onebot.model.api.Message;
 import lombok.Data;
 import lombok.experimental.Accessors;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,6 @@ import java.util.function.Consumer;
  */
 @Data
 @Accessors(chain = true)
-@Component
 public class NodeMessage implements Message {
 
     @Override
@@ -44,7 +42,7 @@ public class NodeMessage implements Message {
 
 
     public static NodeMessage init(Consumer<NodeData> consumer) {
-        return new NodeMessage(0L, "somebody", consumer);
+        return new NodeMessage(0L, "Louise", consumer);
     }
 
     public NodeMessage node(Long userId, String nickname, Consumer<NodeData> consumer) {
@@ -55,7 +53,7 @@ public class NodeMessage implements Message {
     }
 
     public NodeMessage node(Consumer<NodeData> consumer) {
-        NodeData node = new NodeData(0L, "somebody");
+        NodeData node = new NodeData(0L, "Louise");
         consumer.accept(node);
         messages.add(new Node().setType("node").setData(node));
         return this;

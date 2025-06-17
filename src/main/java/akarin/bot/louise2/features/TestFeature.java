@@ -12,6 +12,7 @@ import akarin.bot.louise2.features.common.Feature;
 import akarin.bot.louise2.features.common.FeatureInterface;
 import akarin.bot.louise2.service.OnebotService;
 import akarin.bot.louise2.utils.HttpClientUtil;
+import akarin.bot.louise2.utils.LouiseThreadPool;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
@@ -22,6 +23,8 @@ import org.springframework.http.MediaType;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author akarin
@@ -78,7 +81,7 @@ public class TestFeature extends Feature implements FeatureInterface {
         }
 
         // 如果是在群聊中发起, 进行内容过滤
-        String yandeApi = "https://yande.re/post/popular_by_" + type + ".json?limit=5";
+        String yandeApi = "https://yande.re/post/popular_by_" + type + ".json";
 
         bot.sendMessage(message, new ArrayMessage().text("开始寻找今天的精选图片~"));
 
@@ -89,33 +92,46 @@ public class TestFeature extends Feature implements FeatureInterface {
         }
 
         JSONArray array = JSON.parseArray(sync);
+        JSONArray minus = new JSONArray();
+        minus.addAll(array.subList(0, array.size() > 10 ? 10 : array.size() - 1));
 
-        if (array == null || array.isEmpty()) {
+        if (minus.isEmpty()) {
             bot.sendMessage(message, new ArrayMessage().text("今天没有图片呢，请晚些再试吧 ~"));
             return;
         }
 
-        for (Object o : array) {
-            Thread.ofVirtual().start(() -> {
-                JSONObject json = (JSONObject) o;
-                String url = json.getString("sample_url");
+        List<String> images = new ArrayList<>();
+        for (Object o : minus) {
+            JSONObject json = (JSONObject) o;
+            String url = json.getString("sample_url");
 
-                String fileName;
-                try (Response resp = HttpClientUtil.builder()
-                        .addHeader("Accept", MediaType.APPLICATION_OCTET_STREAM_VALUE)
-                        .get(url).syncResp()) {
-                    if (resp == null || resp.body() == null)
-                        return;
+            String fileName = config.getCachePath() + "/image/" + json.getString("md5") + ".jpg";
+            Path path = Path.of("/home/akarin" + fileName);
+            if (Files.exists(path)) {
+                images.add(fileName);
+                continue;
+            }
 
-                    fileName = config.getCachePath() + "/image/" + json.getString("md5") + ".jpg";
-                    try {
-                        Files.copy(resp.body().byteStream(), Path.of("/home/akarin" + fileName));
-                    } catch (IOException e) {
-                        log.error("处理图片文件时异常: ", e);
-                    }
-                }
-                bot.sendMessage(message, new ArrayMessage().text("今日精选图片：").image(fileName, "file"));
-            });
+            try (Response resp = HttpClientUtil.builder()
+                    .addHeader("Accept", MediaType.APPLICATION_OCTET_STREAM_VALUE)
+                    .get(url).syncResp()) {
+                if (resp == null || resp.body() == null)
+                    continue;
+                Files.copy(resp.body().byteStream(), path);
+                images.add(fileName);
+            } catch (Exception e) {
+                log.error("下载图片失异常: ", e);
+            }
+        }
+
+        while (!images.isEmpty()) {
+            NodeMessage header = NodeMessage.init(c -> c.text("今日精选图片: \n"));
+            for (int idx = 0; idx < 3; idx++) {
+                if (images.isEmpty())
+                    break;
+                header.node(c -> c.image("file://" + images.removeFirst()));
+            }
+            bot.sendMessage(message, header);
         }
     }
 }

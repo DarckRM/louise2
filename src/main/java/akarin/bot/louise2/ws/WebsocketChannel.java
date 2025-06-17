@@ -43,16 +43,16 @@ import java.util.Objects;
 @Slf4j
 @ServerEndpoint(value = "/onebot/v11", decoders = {PostDecoder.class})
 public class WebsocketChannel implements ApplicationContextAware {
-    private ApplicationContext context;
-    private Conversation waitingManager;
-    private LouiseConfig config;
+    private static ApplicationContext context;
+    private static Conversation waitingManager;
+    private static LouiseConfig config;
     private Session session;
 
     @Override
     public void setApplicationContext(@NotNull ApplicationContext context) throws BeansException {
-        this.context = context;
-        this.waitingManager = context.getBean(Conversation.class);
-        this.config = context.getBean(LouiseConfig.class);
+        WebsocketChannel.context = context;
+        WebsocketChannel.waitingManager = context.getBean(Conversation.class);
+        WebsocketChannel.config = context.getBean(LouiseConfig.class);
     }
 
     @OnOpen
@@ -72,13 +72,13 @@ public class WebsocketChannel implements ApplicationContextAware {
 
     @OnMessage
     public void onMessage(PostEvent event) {
-        event.setContext(new LouiseContext(event, context.getBean(OnebotService.class)));
+        event.setContext(new LouiseContext(event, WebsocketChannel.context.getBean(OnebotService.class)));
 
         Long[] triggerInfo = getTriggerInfo(event);
         Long userId = triggerInfo[0];
         outputLog(event);
         // 先处理交互式输入事件
-        if (1 == this.waitingManager.receiveEvent(event))
+        if (1 == WebsocketChannel.waitingManager.receiveEvent(event))
             return;
 
         List<FeatureMethodInterface> methods = FeatureManager.peekFeature(event);
