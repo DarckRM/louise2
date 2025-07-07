@@ -223,7 +223,7 @@ public class ShowcaseContext {
         kotone.setVocalRate(1.4);
         kotone.setDanceRate(1.2);
         kotone.setVisualRate(2.4);
-        kotone.getNiceExperience().setValue(50);
+        kotone.getNiceImpression().setValue(50);
         ShowcaseContext context = new ShowcaseContext();
         context.setKawaiiIdol(kotone);
         for (int i = 0; i < 7; i++) {

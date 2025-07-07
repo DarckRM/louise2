@@ -2,10 +2,8 @@ package akarin.bot.louise2.domain.gakumas.idols.fujita_kotone;
 
 import akarin.bot.louise2.domain.gakumas.ShowcaseContext;
 import akarin.bot.louise2.domain.gakumas.effct.Effect;
-import akarin.bot.louise2.domain.gakumas.effct.EffectInterface;
-import akarin.bot.louise2.domain.gakumas.effct.talent.NiceExperience;
+import akarin.bot.louise2.domain.gakumas.effct.talent.NiceImpression;
 import akarin.bot.louise2.domain.gakumas.effct.talent.Talent;
-import akarin.bot.louise2.domain.gakumas.idols.BaseIdol;
 import akarin.bot.louise2.domain.gakumas.idols.Idol;
 import akarin.bot.louise2.domain.gakumas.idols.LogicalIdol;
 import lombok.Data;
@@ -27,7 +25,7 @@ public class FujitaKotoneChan extends LogicalIdol implements Idol {
 
     private Effect inherentSkill = new Effect("固有技能");
 
-    private NiceExperience niceExperience = new NiceExperience();
+    private NiceImpression niceImpression = new NiceImpression();
 
     private Integer stamina = 12;
 
@@ -37,13 +35,13 @@ public class FujitaKotoneChan extends LogicalIdol implements Idol {
         // 每次发动技能好印象 +2, 并且在最后 3 回合基于好印象打分
         this.getInherentSkill().setTurnStartEffect(ctx -> {
             if (ctx.getTurns().size() < 3)
-                ctx.oneHit(this.getNiceExperience().getValue());
-            this.getNiceExperience().increase(2);
+                ctx.oneHit(this.getNiceImpression().getValue());
+            this.getNiceImpression().increase(2);
         });
     }
 
     public Talent getTalent() {
-        return niceExperience;
+        return niceImpression;
     }
 
     @Override
@@ -55,7 +53,7 @@ public class FujitaKotoneChan extends LogicalIdol implements Idol {
         StringBuilder builder = new StringBuilder();
         builder.append(getName()).append(" ")
                 .append("体力: ").append(getStamina()).append("/").append(getMaxStamina()).append(" ")
-                .append("好印象: ").append(getNiceExperience().getValue());
+                .append("好印象: ").append(getNiceImpression().getValue());
         return builder.toString();
     }
 }

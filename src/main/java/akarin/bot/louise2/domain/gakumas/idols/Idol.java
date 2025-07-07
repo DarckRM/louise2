@@ -19,16 +19,31 @@ public interface Idol {
 
     Talent getTalent();
 
-    Integer getStamina();
+    Integer getGenki();
 
-    Integer getMaxStamina();
+    void setGenki(Integer genki);
+
+    Integer getStamina();
 
     void setStamina(Integer stamina);
 
-    default void staminaCost(Integer amount) {
+    Integer getMaxStamina();
+
+    default void directStaminaCost(Integer amount) {
         if (getStamina() - amount < 0)
             throw new RunOutOfStaminaException();
         setStamina(getStamina() - amount);
+    }
+
+    default void staminaCost(Integer amount) {
+        if (getStamina() + getGenki() - amount < 0)
+            throw new RunOutOfStaminaException();
+        if (getGenki() > amount)
+            setGenki(getGenki() - amount);
+        else {
+            setStamina(getStamina() - (amount - getGenki()));
+            setGenki(0);
+        }
     }
 
     default void staminaRecover(Integer amount) {

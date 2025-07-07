@@ -1,7 +1,7 @@
 package akarin.bot.louise2.domain.gakumas.idols;
 
-import akarin.bot.louise2.domain.gakumas.effct.talent.NiceExperience;
-import akarin.bot.louise2.domain.gakumas.effct.talent.Talent;
+import akarin.bot.louise2.domain.gakumas.effct.talent.NiceImpression;
+import akarin.bot.louise2.domain.gakumas.effct.talent.Yaruki;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -14,5 +14,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class LogicalIdol extends BaseIdol {
-    private NiceExperience niceExperience;
+
+    private NiceImpression niceImpression;
+
+    private Yaruki yaruki;
 }

@@ -32,12 +32,12 @@ public class EnhanceLogicalCard extends BaseCard implements Card {
         effect.setActiveCardEffect(ctx -> {
             LogicalIdol kawaiiIdol = (LogicalIdol) ctx.getKawaiiIdol();
             if (ctx.getCurrentTurn().getCardHistory().getLast().getType() == CardType.ACTIVE)
-                kawaiiIdol.getNiceExperience().increase(3);
+                kawaiiIdol.getNiceImpression().increase(3);
         });
 
         effect.setPlayCardEffect(ctx -> {
             LogicalIdol kawaiiIdol = (LogicalIdol) ctx.getKawaiiIdol();
-            kawaiiIdol.getNiceExperience().increase(1);
+            kawaiiIdol.getNiceImpression().increase(1);
         });
     }
 

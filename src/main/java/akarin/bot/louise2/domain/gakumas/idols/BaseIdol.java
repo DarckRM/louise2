@@ -18,7 +18,12 @@ public class BaseIdol {
     public enum IdolType {
         LOGICAL,
         SENSE,
-        ANOMALY
+        ANOMALY;
+    }
+
+    public enum SubIdolType {
+        NICE_IMPRESSION,
+        GENKI
     }
 
     private String id;
@@ -34,6 +39,9 @@ public class BaseIdol {
 
     // 最大体力
     private Integer maxStamina;
+
+    // 元气值
+    private Integer genki;
 
     // 固有技能
     private Effect inherentSkill;

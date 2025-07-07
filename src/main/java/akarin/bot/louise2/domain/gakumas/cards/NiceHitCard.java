@@ -34,7 +34,7 @@ public class NiceHitCard extends BaseCard implements Card {
         effect.setActiveCardEffect(ctx -> {
             LogicalIdol kawaiiIdol = (LogicalIdol) ctx.getKawaiiIdol();
             ctx.oneHit(getPoint());
-            kawaiiIdol.getNiceExperience().increase(2);
+            kawaiiIdol.getNiceImpression().increase(2);
         });
     }
 

@@ -1,8 +1,6 @@
 package akarin.bot.louise2.domain.gakumas.effct.talent;
 
 import akarin.bot.louise2.domain.gakumas.effct.Effect;
-import akarin.bot.louise2.domain.gakumas.idols.BaseIdol;
-import akarin.bot.louise2.domain.gakumas.idols.LogicalIdol;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -14,7 +12,7 @@ import lombok.experimental.Accessors;
  */
 @Accessors(chain = true)
 @Data
-public class NiceExperience implements Talent {
+public class NiceImpression implements Talent {
 
     private Integer value;
 
@@ -28,7 +26,7 @@ public class NiceExperience implements Talent {
         this.value -= amount;
     }
 
-    public NiceExperience() {
+    public NiceImpression() {
         // 回合结束时基于好印象和倍率打分然后减 1
         effect.setTurnEndEffect(ctx -> {
             ctx.oneHit(this.getValue());
