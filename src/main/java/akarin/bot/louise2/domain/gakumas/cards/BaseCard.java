@@ -51,7 +51,7 @@ public class BaseCard {
 
     public String description() {
         StringBuilder builder = new StringBuilder();
-        builder.append(getId()).append(" ");
+//        builder.append(getId()).append(" ");
         builder.append(getName()).append(" ");
         builder.append("(").append(getType().getValue()).append(") ");
         builder.append("体力消耗: (").append(getCost()).append(") ");

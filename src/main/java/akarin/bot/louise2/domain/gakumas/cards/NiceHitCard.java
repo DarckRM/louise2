@@ -2,8 +2,6 @@ package akarin.bot.louise2.domain.gakumas.cards;
 
 import akarin.bot.louise2.domain.gakumas.ShowcaseContext;
 import akarin.bot.louise2.domain.gakumas.effct.Effect;
-import akarin.bot.louise2.domain.gakumas.effct.EffectInterface;
-import akarin.bot.louise2.domain.gakumas.idols.Idol;
 import akarin.bot.louise2.domain.gakumas.idols.LogicalIdol;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,7 +16,7 @@ import lombok.EqualsAndHashCode;
 @Data
 public class NiceHitCard extends BaseCard implements Card {
 
-    private Effect effect = new Effect();
+    private Effect effect = new Effect("基础表演");
 
     private CardType type = CardType.ACTIVE;
 
@@ -33,7 +31,7 @@ public class NiceHitCard extends BaseCard implements Card {
     private Integer activeCount = 1;
 
     public NiceHitCard() {
-        effect.setActiveEffect(ctx -> {
+        effect.setActiveCardEffect(ctx -> {
             LogicalIdol kawaiiIdol = (LogicalIdol) ctx.getKawaiiIdol();
             ctx.oneHit(getPoint());
             kawaiiIdol.getNiceExperience().increase(2);
@@ -42,7 +40,7 @@ public class NiceHitCard extends BaseCard implements Card {
 
     @Override
     public void affect(ShowcaseContext context) {
-        effect.getActiveEffect().affect(context);
+        effect.getActiveCardEffect().affect(context);
     }
 
 }

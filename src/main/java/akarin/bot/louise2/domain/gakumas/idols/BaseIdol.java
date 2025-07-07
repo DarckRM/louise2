@@ -36,7 +36,7 @@ public class BaseIdol {
     private Integer maxStamina;
 
     // 固有技能
-    private Effect inherentSkill = new Effect();
+    private Effect inherentSkill;
 
     // 歌唱力
     private Double vocal;

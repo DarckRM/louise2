@@ -10,6 +10,8 @@ import akarin.bot.louise2.domain.gakumas.ShowcaseContext;
  */
 public interface Card {
 
+    BaseCard.CardType getType();
+
     String description();
 
     void affect(ShowcaseContext context);

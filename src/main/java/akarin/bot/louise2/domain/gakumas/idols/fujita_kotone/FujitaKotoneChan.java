@@ -21,13 +21,17 @@ import lombok.EqualsAndHashCode;
 @Data
 public class FujitaKotoneChan extends LogicalIdol implements Idol {
 
+    private String name = "藤田琴音(Fujita Kotone)";
+
     private IdolType type = IdolType.LOGICAL;
 
-    private Effect inherentSkill = new Effect();
+    private Effect inherentSkill = new Effect("固有技能");
 
     private NiceExperience niceExperience = new NiceExperience();
 
     private Integer stamina = 12;
+
+    private Integer maxStamina = 12;
 
     public FujitaKotoneChan() {
         // 每次发动技能好印象 +2, 并且在最后 3 回合基于好印象打分
@@ -44,5 +48,14 @@ public class FujitaKotoneChan extends LogicalIdol implements Idol {
 
     @Override
     public void init(ShowcaseContext ctx) {
+    }
+
+    @Override
+    public String description() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(getName()).append(" ")
+                .append("体力: ").append(getStamina()).append("/").append(getMaxStamina()).append(" ")
+                .append("好印象: ").append(getNiceExperience().getValue());
+        return builder.toString();
     }
 }

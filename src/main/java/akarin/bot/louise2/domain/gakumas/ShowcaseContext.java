@@ -1,8 +1,10 @@
 package akarin.bot.louise2.domain.gakumas;
 
 import akarin.bot.louise2.domain.gakumas.cards.Card;
+import akarin.bot.louise2.domain.gakumas.cards.EnhanceLogicalCard;
 import akarin.bot.louise2.domain.gakumas.cards.NiceHitCard;
 import akarin.bot.louise2.domain.gakumas.effct.Effect;
+import akarin.bot.louise2.domain.gakumas.exceptions.RunOutOfStaminaException;
 import akarin.bot.louise2.domain.gakumas.idols.Idol;
 import akarin.bot.louise2.domain.gakumas.idols.fujita_kotone.FujitaKotoneChan;
 import lombok.Data;
@@ -31,8 +33,11 @@ public class ShowcaseContext {
     // 当前得点
     private Long currentPoint;
 
-    // 该场展示所有回合
+    // 该场演出所有回合
     private List<Turn> turns = new ArrayList<>();
+
+    // 该场演出历史回合
+    private List<Turn> hisTurns = new ArrayList<>();
 
     // 当前回合
     private Turn currentTurn;
@@ -78,25 +83,34 @@ public class ShowcaseContext {
         // 圣遗物效果生效
 
         // 演出阶段
-        for (Turn turn : turns) {
-            currentTurn = turn;
+        while (!turns.isEmpty()) {
+            currentTurn = turns.removeFirst();
             // 回合开始
-            getEffects().forEach(e -> e.getTurnStartEffect().affect(this));
+            getEffects().forEach(e -> e.turnStart(this));
 
             // 抽卡阶段
             drawCards();
-            getEffects().forEach(e -> e.getDrawEffect().affect(this));
+            getEffects().forEach(e -> e.drawCard(this));
 
             // 出牌阶段
+            contextPreview();
             playCard();
 
             // 弃牌阶段
             discardCard();
 
             // 回合结束
-            getEffects().forEach(e -> e.getTurnEndEffect().affect(this));
+            getEffects().forEach(e -> e.turnEnd(this));
+
+            hisTurns.add(currentTurn);
         }
 
+    }
+
+    public void contextPreview() {
+        log.info("当前分数 {}Pt 当前回合 {} 牌山数: {} 弃牌数: {} 除外数: {} ", getCurrentPoint(), getCurrentTurn().getType(),
+                getDeck().size(), getDiscarded().size(), getDestroyed().size());
+        log.info("演出偶像: {}", getKawaiiIdol().description());
     }
 
     public void discardCard() {
@@ -106,17 +120,26 @@ public class ShowcaseContext {
     }
 
     public void playCard() {
-        if (deck.isEmpty())
-            return;
         int cardCount = currentTurn.getCardCount();
         Card card = null;
         while (cardCount > 0) {
             try {
                 handPreview();
                 card = peekCard();
+
                 staminaProcess(card);
+
+                // 出牌阶段效果生效
+                getEffects().forEach(e -> e.playCard(this));
+
                 cardAffect(card);
                 cardCount--;
+                getCurrentTurn().getCardHistory().add(card);
+            } catch (IllegalArgumentException e) {
+                log.info(e.getMessage());
+                // 跳过回合恢复 2 点体力
+                getKawaiiIdol().staminaRecover(2);
+                return;
             } catch (Exception e) {
                 log.error(e.getMessage());
                 if (card != null)
@@ -127,19 +150,14 @@ public class ShowcaseContext {
     }
 
     private void staminaProcess(Card card) {
-        if (card == null) {
-            // 跳过回合恢复 2 点体力
-            getKawaiiIdol().staminaRecover(2);
-            return;
-        }
         // 体力扣除计算
         if (card.getCost() > getKawaiiIdol().getStamina())
-            throw new IllegalArgumentException("体力不足无法发动");
+            throw new RunOutOfStaminaException();
         getKawaiiIdol().staminaCost(card.getCost());
     }
 
     private void handPreview() {
-        log.info("手牌: ");
+        log.info("手牌数: {}", hand.size());
         hand.forEach(c -> log.info(c.description()));
     }
 
@@ -149,18 +167,17 @@ public class ShowcaseContext {
                 Scanner scan = new Scanner(System.in);
                 int cardIndex = scan.nextInt();
                 if (cardIndex < 0)
-                    return null;
-                return deck.get(cardIndex);
-            } catch (IndexOutOfBoundsException e) {
+                    throw new IllegalArgumentException("跳过出牌阶段");
+                return hand.remove(cardIndex);
+            } catch (IndexOutOfBoundsException _) {
                 log.error("出牌序号非法，请重试");
             }
         }
     }
 
     private void cardAffect(Card card) {
-        if (card == null)
-            return;
         // 卡牌效果发动
+        log.info("卡牌发动: {} ", card.description());
         card.affect(this);
         card.setActiveCount(card.getActiveCount() - 1);
         // 使用的手牌如果使用次数为 0 进入除外区
@@ -179,10 +196,11 @@ public class ShowcaseContext {
             discarded.clear();
         }
 
-        for (int i = 0; i < drawCount && !deck.isEmpty(); i++) {
-            int cardIndex = random.nextInt(deck.size());
-            Card drawnCard = deck.remove(cardIndex);
+        while (drawCount > 0 && !deck.isEmpty()) {
+            int peek = random.nextInt(deck.size());
+            Card drawnCard = deck.remove(peek);
             hand.add(drawnCard);
+            drawCount--;
         }
     }
 
@@ -208,14 +226,14 @@ public class ShowcaseContext {
         kotone.getNiceExperience().setValue(50);
         ShowcaseContext context = new ShowcaseContext();
         context.setKawaiiIdol(kotone);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 7; i++) {
             NiceHitCard niceHitCard = new NiceHitCard();
             niceHitCard.setId(String.valueOf(i));
             context.getDeck().add(niceHitCard);
         }
+        context.getDeck().add(new EnhanceLogicalCard());
         context.showcase();
-
-        System.out.println(context);
+        context.contextPreview();
     }
 
 }

@@ -18,7 +18,7 @@ public class NiceExperience implements Talent {
 
     private Integer value;
 
-    private Effect effect = new Effect();
+    private Effect effect = new Effect("好印象");
 
     public void increase(Integer amount) {
         this.value += amount;
@@ -29,7 +29,6 @@ public class NiceExperience implements Talent {
     }
 
     public NiceExperience() {
-
         // 回合结束时基于好印象和倍率打分然后减 1
         effect.setTurnEndEffect(ctx -> {
             ctx.oneHit(this.getValue());
