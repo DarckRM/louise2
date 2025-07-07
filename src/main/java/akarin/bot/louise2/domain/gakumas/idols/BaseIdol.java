@@ -1,6 +1,7 @@
 package akarin.bot.louise2.domain.gakumas.idols;
 
 import akarin.bot.louise2.domain.gakumas.ShowcaseContext;
+import akarin.bot.louise2.domain.gakumas.effct.Effect;
 import akarin.bot.louise2.domain.gakumas.effct.EffectInterface;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -11,7 +12,6 @@ import lombok.experimental.Accessors;
  * @description 偶像基础类
  * @date 2025/7/3 15:58
  */
-@Accessors(chain = true)
 @Data
 public class BaseIdol {
 
@@ -36,8 +36,7 @@ public class BaseIdol {
     private Integer maxStamina;
 
     // 固有技能
-    private EffectInterface inherentSkill = context -> {
-    };
+    private Effect inherentSkill = new Effect();
 
     // 歌唱力
     private Double vocal;

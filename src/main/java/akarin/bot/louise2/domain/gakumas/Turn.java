@@ -1,7 +1,11 @@
 package akarin.bot.louise2.domain.gakumas;
 
+import akarin.bot.louise2.domain.gakumas.cards.Card;
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author akarin
@@ -21,6 +25,15 @@ public class Turn {
     }
 
     private TurnType type;
+
+    // 当前回合抽牌数 默认 3 张
+    private Integer drawCount = 3;
+
+    // 当前回合出牌数 默认 1 张
+    private Integer cardCount = 1;
+
+    // 当前回合出牌记录
+    private List<Card> cardHistory = new ArrayList<>();
 
     public Turn(TurnType type) {
         this.type = type;

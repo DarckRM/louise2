@@ -15,9 +15,11 @@ import lombok.experimental.Accessors;
 @Data
 public class Effect {
     // 回合开始生效
-    private EffectInterface turnStartEffect;
+    private EffectInterface turnStartEffect = ctx -> {};
     // 抽卡阶段开始生效
-    private EffectInterface drawEffect;
+    private EffectInterface drawEffect = ctx -> {};
     // 回合结束阶段生效
-    private EffectInterface turnEndEffect;
+    private EffectInterface turnEndEffect = ctx -> {};
+    // 主动发动时生效
+    private EffectInterface activeEffect = ctx -> {};
 }
