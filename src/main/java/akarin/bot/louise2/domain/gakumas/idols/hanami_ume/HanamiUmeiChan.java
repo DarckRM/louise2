@@ -33,7 +33,7 @@ public class HanamiUmeiChan extends LogicalIdol implements Idol {
 
     public HanamiUmeiChan() {
         // 演出开始时干劲每回合加 3 并且获得 5 元气值, 持续 3 回合
-        inherentSkill.setTurnStartEffect(ctx -> {
+        getInherentSkill().setTurnStartEffect(ctx -> {
             if (ctx.getHisTurns().size() < 3) {
                 getYaruki().increase(3);
                 setGenki(getGenki() + 5 + getYaruki().getValue());

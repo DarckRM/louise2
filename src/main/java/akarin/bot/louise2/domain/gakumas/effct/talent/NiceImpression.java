@@ -28,7 +28,7 @@ public class NiceImpression implements Talent {
 
     public NiceImpression() {
         // 回合结束时基于好印象和倍率打分然后减 1
-        effect.setTurnEndEffect(ctx -> {
+        getEffect().setTurnEndEffect(ctx -> {
             ctx.oneHit(this.getValue());
             this.decrease(1);
         });

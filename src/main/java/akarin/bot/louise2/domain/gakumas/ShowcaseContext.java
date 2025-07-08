@@ -73,7 +73,7 @@ public class ShowcaseContext {
         // 初始化回合数
         Random random = new Random();
         for (int i = 0; i < 11; i++)
-            getTurns().add(new Turn(Turn.TurnType.values()[random.nextInt(Turn.TurnType.values().length)]));
+            getTurns().add(new Turn(Turn.TurnType.values()[random.nextInt(Turn.TurnType.values().length)], this));
 
         // 偶像属性初始化
         getKawaiiIdol().init(this);
@@ -83,7 +83,9 @@ public class ShowcaseContext {
         // 圣遗物效果生效
 
         // 演出阶段
+        int turn = 1;
         while (!turns.isEmpty()) {
+            log.info("====== 第 {} 回合 ======", turn);
             currentTurn = turns.removeFirst();
             // 回合开始
             getEffects().forEach(e -> e.turnStart(this));
@@ -94,7 +96,7 @@ public class ShowcaseContext {
 
             // 出牌阶段
             contextPreview();
-            playCard();
+            currentTurn.play();
 
             // 弃牌阶段
             discardCard();
@@ -103,6 +105,8 @@ public class ShowcaseContext {
             getEffects().forEach(e -> e.turnEnd(this));
 
             hisTurns.add(currentTurn);
+            turn++;
+            log.info("====== 回合结束 ======\n");
         }
 
     }
@@ -119,69 +123,27 @@ public class ShowcaseContext {
         hand.clear();
     }
 
-    public void playCard() {
-        int cardCount = currentTurn.getCardCount();
-        Card card = null;
-        while (cardCount > 0) {
-            try {
-                handPreview();
-                card = peekCard();
-
-                staminaProcess(card);
-
-                // 出牌阶段效果生效
-                getEffects().forEach(e -> e.playCard(this));
-
-                cardAffect(card);
-                cardCount--;
-                getCurrentTurn().getCardHistory().add(card);
-            } catch (IllegalArgumentException e) {
-                log.info(e.getMessage());
-                // 跳过回合恢复 2 点体力
-                getKawaiiIdol().staminaRecover(2);
-                return;
-            } catch (Exception e) {
-                log.error(e.getMessage());
-                if (card != null)
-                    hand.add(card);
-            }
-        }
-
-    }
-
-    private void staminaProcess(Card card) {
+    public void staminaProcess(Card card) {
         // 体力扣除计算
-        if (card.getCost() > getKawaiiIdol().getStamina())
+        if (card.cost() > getKawaiiIdol().getStamina())
             throw new RunOutOfStaminaException();
-        getKawaiiIdol().staminaCost(card.getCost());
+        getKawaiiIdol().staminaCost(card.cost());
     }
 
-    private void handPreview() {
+
+    public void handPreview() {
         log.info("手牌数: {}", hand.size());
         hand.forEach(c -> log.info(c.description()));
     }
 
-    private Card peekCard() {
-        while (true) {
-            try {
-                Scanner scan = new Scanner(System.in);
-                int cardIndex = scan.nextInt();
-                if (cardIndex < 0)
-                    throw new IllegalArgumentException("跳过出牌阶段");
-                return hand.remove(cardIndex);
-            } catch (IndexOutOfBoundsException _) {
-                log.error("出牌序号非法，请重试");
-            }
-        }
-    }
-
-    private void cardAffect(Card card) {
+    public void cardAffect(Card card) {
         // 卡牌效果发动
         log.info("卡牌发动: {} ", card.description());
-        card.affect(this);
-        card.setActiveCount(card.getActiveCount() - 1);
+        card.decreaseCount();
+        for (int i = 0; i < card.count(); i++)
+            card.affect(this);
         // 使用的手牌如果使用次数为 0 进入除外区
-        if (card.getActiveCount() == 0)
+        if (card.count() == 0)
             destroyed.add(card);
         else
             // 否则进入弃牌区

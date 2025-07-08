@@ -22,13 +22,17 @@ public class NiceHitCard extends BaseCard implements Card {
 
     private String name = "基础表演";
 
+    private Integer count = 1;
+
     private Integer point = 10;
 
     private Integer cost = 3;
 
-    private String description = "好印象专用, 发动时获得 " + getPoint() + "Pt 分数, 并且增加 2 点好印象";
-
     private Integer activeCount = 1;
+
+    private Integer bonus = 2;
+
+    private String description = "好印象专用, 发动时获得 " + getPoint() + "Pt 分数, 并且增加 " + getBonus() + " 点好印象";
 
     public NiceHitCard() {
         effect.setActiveCardEffect(ctx -> {
@@ -41,6 +45,16 @@ public class NiceHitCard extends BaseCard implements Card {
     @Override
     public void affect(ShowcaseContext context) {
         effect.getActiveCardEffect().affect(context);
+    }
+
+    @Override
+    public void upgrade() {
+
+    }
+
+    @Override
+    public void customize() {
+
     }
 
 }

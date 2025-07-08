@@ -41,7 +41,7 @@ public class BaseIdol {
     private Integer maxStamina;
 
     // 元气值
-    private Integer genki;
+    private Integer genki = 0;
 
     // 固有技能
     private Effect inherentSkill;

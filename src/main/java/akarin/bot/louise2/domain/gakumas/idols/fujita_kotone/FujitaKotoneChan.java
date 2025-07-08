@@ -50,10 +50,8 @@ public class FujitaKotoneChan extends LogicalIdol implements Idol {
 
     @Override
     public String description() {
-        StringBuilder builder = new StringBuilder();
-        builder.append(getName()).append(" ")
-                .append("体力: ").append(getStamina()).append("/").append(getMaxStamina()).append(" ")
-                .append("好印象: ").append(getNiceImpression().getValue());
-        return builder.toString();
+        return getName() + " " +
+                "体力: " + getStamina() + "/" + getMaxStamina() + " " +
+                "好印象: " + getNiceImpression().getValue();
     }
 }
