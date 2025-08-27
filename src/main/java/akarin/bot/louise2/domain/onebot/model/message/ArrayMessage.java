@@ -24,6 +24,10 @@ public class ArrayMessage implements Message {
         return this;
     }
 
+    public ArrayMessage text(String text, Object... args) {
+        return text(String.format(text, args));
+    }
+
     public ArrayMessage text(String text) {
         MessageSegment segment = MessageSegment.text(text);
         messages.add(segment);

@@ -40,6 +40,8 @@ public class EnhanceLogicalCard extends BaseCard implements Card {
 
     private Integer upgradeBonus = 0;
 
+    private Integer count = 1;
+
     private String description = String.format("好印象专用, 发动时获得 %s 点好印象, 后续每次使用 Active 卡时增加 %s 点好印象",
             nicePoint(), bonus());
 
@@ -56,17 +58,20 @@ public class EnhanceLogicalCard extends BaseCard implements Card {
         this.setDescription(String.format("好印象专用, 发动时获得 %s 点好印象, 后续每次使用 Active 卡时增加 %s 点好印象, " +
                 "本回合出牌数加 1 并且下一张发动卡牌额外生效 1 次", nicePoint(), bonus()));
 
-        this.effect.setPlayCardEffect(ctx -> {
+        this.getEffect().setActiveCardEffect(ctx -> {
+            LogicalIdol kawaiiIdol = (LogicalIdol) ctx.getKawaiiIdol();
+            kawaiiIdol.getNiceImpression().increase(nicePoint());
             // 当前回合出牌数加 1
             ctx.getCurrentTurn().increasePlayCount();
             // 当前回合下一张牌生效次数加 1
             ctx.getCurrentTurn().setActiveCount(2);
-            ctx.getCurrentTurn().getEffect().setPlayCardEffect(ctx1 -> ctx1.getCurrentTurn().setActiveCount(1));
         });
     };
 
     public EnhanceLogicalCard() {
         effect.setActiveCardEffect(ctx -> {
+            if (ctx.getCurrentTurn().getCardHistory().isEmpty())
+                return;
             LogicalIdol kawaiiIdol = (LogicalIdol) ctx.getKawaiiIdol();
             if (ctx.getCurrentTurn().getCardHistory().getLast().getType() == CardType.ACTIVE)
                 kawaiiIdol.getNiceImpression().increase(3);

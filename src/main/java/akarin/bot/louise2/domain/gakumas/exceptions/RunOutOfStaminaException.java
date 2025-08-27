@@ -6,7 +6,7 @@ package akarin.bot.louise2.domain.gakumas.exceptions;
  * @description 体力耗尽
  * @date 2025/7/7 16:43
  */
-public class RunOutOfStaminaException extends RuntimeException {
+public class RunOutOfStaminaException extends GakumasShowcaseException {
 
     public RunOutOfStaminaException(String message) {
         super(message);

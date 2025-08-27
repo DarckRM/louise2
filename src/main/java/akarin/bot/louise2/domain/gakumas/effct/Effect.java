@@ -34,35 +34,35 @@ public class Effect {
     public void turnStart(ShowcaseContext ctx) {
         if (getTurnStartEffect() == null)
             return;
-        log.info("回合开始 {} 发动", getName());
+        log.info("-- 回合开始 「{}」 发动", getName());
         getTurnStartEffect().affect(ctx);
     }
 
     public void drawCard(ShowcaseContext ctx) {
         if (getDrawCardEffect() == null)
             return;
-        log.info("抽卡阶段 {} 发动", getName());
+        log.info("-- 抽卡阶段 「{}」 发动", getName());
         getDrawCardEffect().affect(ctx);
     }
 
     public void playCard(ShowcaseContext ctx) {
         if (getPlayCardEffect() == null)
             return;
-        log.info("出牌阶段 {} 发动", getName());
+        log.info("-- 出牌阶段 「{}」 发动", getName());
         getPlayCardEffect().affect(ctx);
     }
 
     public void turnEnd(ShowcaseContext ctx) {
         if (getTurnEndEffect() == null)
             return;
-        log.info("回合结束 {} 发动", getName());
+        log.info("-- 回合结束 「{}」 发动", getName());
         getTurnEndEffect().affect(ctx);
     }
 
     public void active(ShowcaseContext ctx) {
         if (getActiveCardEffect() == null)
             return;
-        log.info("{} 主动发动", getName());
+        log.info("-- 「{}」 主动发动", getName());
         getActiveCardEffect().affect(ctx);
     }
 

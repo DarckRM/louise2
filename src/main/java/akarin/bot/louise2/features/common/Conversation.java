@@ -48,7 +48,7 @@ public class Conversation {
     @PostConstruct
     public void init() {
         pool.submit(() -> {
-            while (true) {
+            while (!Thread.currentThread().isInterrupted()) {
                 try {
                     dropExpiredFunction();
                     TimeUnit.SECONDS.sleep(INTERVAL);

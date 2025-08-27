@@ -105,8 +105,8 @@ public class ShowcaseContext {
             getEffects().forEach(e -> e.turnEnd(this));
 
             hisTurns.add(currentTurn);
+            log.info("====== 回合 {} 结束 ======\n", turn);
             turn++;
-            log.info("====== 回合结束 ======\n");
         }
 
     }
@@ -114,7 +114,9 @@ public class ShowcaseContext {
     public void contextPreview() {
         log.info("当前分数 {}Pt 当前回合 {} 牌山数: {} 弃牌数: {} 除外数: {} ", getCurrentPoint(), getCurrentTurn().getType(),
                 getDeck().size(), getDiscarded().size(), getDestroyed().size());
-        log.info("演出偶像: {}", getKawaiiIdol().description());
+        log.info("偶像信息: {}", getKawaiiIdol().description());
+        // 当前生效效果
+        log.info("持续效果: {}", getEffects().stream().map(e -> "「" + e.getName() + "」").toList());
     }
 
     public void discardCard() {
@@ -138,9 +140,9 @@ public class ShowcaseContext {
 
     public void cardAffect(Card card) {
         // 卡牌效果发动
-        log.info("卡牌发动: {} ", card.description());
+        log.info("卡牌发动: 「{}」 ", card.getName());
         card.decreaseCount();
-        for (int i = 0; i < card.count(); i++)
+        for (int i = 0; i < card.active(); i++)
             card.affect(this);
         // 使用的手牌如果使用次数为 0 进入除外区
         if (card.count() == 0)
@@ -148,6 +150,21 @@ public class ShowcaseContext {
         else
             // 否则进入弃牌区
             discarded.add(card);
+    }
+
+    public void drawCardsAdditional(Integer count) {
+        // 如果牌山已经抽空, 则将弃牌区所有卡牌加入到牌山
+        if (deck.isEmpty()) {
+            deck.addAll(discarded);
+            discarded.clear();
+        }
+
+        while (count > 0 && !deck.isEmpty()) {
+            int peek = random.nextInt(deck.size());
+            Card drawnCard = deck.remove(peek);
+            hand.add(drawnCard);
+            count--;
+        }
     }
 
     public void drawCards() {
@@ -173,7 +190,7 @@ public class ShowcaseContext {
             case DANCE -> basePoint * getKawaiiIdol().getDanceRate();
             case VISUAL -> basePoint * getKawaiiIdol().getVisualRate();
         };
-        log.info("获得分数: {}Pt", point.longValue());
+        log.info("| Pt UP: {}", point.longValue());
         setCurrentPoint(getCurrentPoint() + point.longValue());
     }
 
@@ -193,7 +210,9 @@ public class ShowcaseContext {
             niceHitCard.setId(String.valueOf(i));
             context.getDeck().add(niceHitCard);
         }
-        context.getDeck().add(new EnhanceLogicalCard());
+        EnhanceLogicalCard enhance = new EnhanceLogicalCard();
+        enhance.upgrade();
+        context.getDeck().add(enhance);
         context.showcase();
         context.contextPreview();
     }

@@ -8,14 +8,17 @@ import akarin.bot.louise2.domain.common.LouiseContext;
 import akarin.bot.louise2.domain.onebot.event.message.MessageEvent;
 import akarin.bot.louise2.domain.onebot.model.message.ArrayMessage;
 import akarin.bot.louise2.domain.onebot.model.message.NodeMessage;
+import akarin.bot.louise2.features.common.Conversation;
 import akarin.bot.louise2.features.common.Feature;
 import akarin.bot.louise2.features.common.FeatureInterface;
+import akarin.bot.louise2.function.InteractFunctionWrapper;
 import akarin.bot.louise2.service.OnebotService;
 import akarin.bot.louise2.utils.HttpClientUtil;
 import akarin.bot.louise2.utils.LouiseThreadPool;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
+import jakarta.websocket.OnMessage;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Response;
 import org.springframework.http.MediaType;
@@ -50,6 +53,20 @@ public class TestFeature extends Feature implements FeatureInterface {
     @Override
     public void init() {
 
+    }
+
+    @OnCommand("conv")
+    public void testConversation(MessageEvent event, Conversation conversation, OnebotService bot) {
+        InteractFunctionWrapper<?> wrapper = conversation.waitingSender("进入监听模式", event, reply -> {
+            if (reply == null)
+                bot.reply(event, new ArrayMessage().text("等待回复超时"));
+
+            if (reply instanceof MessageEvent replyEvent)
+                bot.reply(replyEvent, new ArrayMessage().text("收到消息 %s", replyEvent.getRawMessage()));
+
+            return this;
+        });
+        log.info(wrapper.toString());
     }
 
     @FeatureAuth(name = "依赖注入测试", cooldown = "10")

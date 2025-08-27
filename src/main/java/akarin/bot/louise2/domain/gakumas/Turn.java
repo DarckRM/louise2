@@ -2,7 +2,9 @@ package akarin.bot.louise2.domain.gakumas;
 
 import akarin.bot.louise2.domain.gakumas.cards.Card;
 import akarin.bot.louise2.domain.gakumas.effct.Effect;
+import akarin.bot.louise2.domain.gakumas.exceptions.GakumasShowcaseException;
 import akarin.bot.louise2.domain.gakumas.exceptions.SkipTurnException;
+import akarin.bot.louise2.domain.gakumas.exceptions.UnavailableCard;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
@@ -69,6 +71,7 @@ public class Turn {
         int playedCardCount = 0;
         while (playedCardCount < getCardCount()) {
             // 输出手牌情况
+            log.info("-- -- -- - 出牌数/剩余出牌数: {}/{}", playedCardCount, getCardCount());
             context.handPreview();
             try {
                 // 玩家选择出牌
@@ -82,12 +85,13 @@ public class Turn {
                 // 跳过回合恢复 2 点体力
                 context.getKawaiiIdol().staminaRecover(2);
                 return;
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (GakumasShowcaseException gE) {
                 // 出牌异常 如果选择了卡牌将其重新加入手牌
-                log.error(e.getMessage());
+                log.error(gE.getMessage());
                 if (currentCard != null)
                     context.getHand().add(currentCard);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
@@ -116,7 +120,7 @@ public class Turn {
                 currentCard = context.getHand().remove(cardIndex);
                 return;
             } catch (IndexOutOfBoundsException _) {
-                log.error("出牌序号非法，请重试");
+                throw new UnavailableCard("选择的卡牌不存在，请重试");
             }
         }
     }

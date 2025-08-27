@@ -6,7 +6,7 @@ package akarin.bot.louise2.domain.gakumas.exceptions;
  * @description 跳过回合
  * @date 2025/7/7 16:43
  */
-public class SkipTurnException extends RuntimeException {
+public class SkipTurnException extends GakumasShowcaseException {
 
     public SkipTurnException(String message) {
         super(message);

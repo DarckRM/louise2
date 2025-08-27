@@ -36,6 +36,9 @@ public class BaseCard {
     // 卡牌名称
     private String name;
 
+    // 是否强化
+    private Boolean isUpgrade;
+
     // 偶像类型
     private BaseIdol.IdolType idolType;
 
@@ -67,20 +70,20 @@ public class BaseCard {
 
     public Integer count() {
         if (getCount() == null)
-            return null;
+            return 1;
         return getCount() + getCountBonus();
     }
 
     public void increaseCount() {
-        if (this.count == null)
+        if (getCount() == null)
             return;
-        this.count++;
+        setCount(getCount() + 1);
     }
 
     public void decreaseCount() {
-        if (this.count == null)
+        if (getCount() == null)
             return;
-        this.count--;
+        setCount(getCount() - 1);
     }
 
     public Integer active() {
