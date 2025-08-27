@@ -16,15 +16,7 @@ public class LouiseContext {
 
     private PostEvent event;
 
-    private OnebotService onebotService;
-
-    public LouiseContext(PostEvent event, OnebotService onebotService) {
+    public LouiseContext(PostEvent event) {
         this.event = event;
-        this.onebotService = onebotService;
-    }
-
-// 回复消息
-    public void reply(Message message) {
-        onebotService.reply(event, message);
     }
 }

@@ -1,13 +1,17 @@
 package akarin.bot.louise2.domain.onebot.event.message;
 
+import akarin.bot.louise2.domain.common.LouiseContext;
 import akarin.bot.louise2.domain.onebot.event.PostEvent;
 import akarin.bot.louise2.domain.onebot.model.api.Message;
 import akarin.bot.louise2.domain.onebot.model.message.Sender;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 /**
  * @author akarin
@@ -39,4 +43,13 @@ public class MessageEvent extends PostEvent {
     private Integer font;
     // 发送人信息
     private Sender sender;
+
+    @Getter(value = AccessLevel.NONE)
+    private LouiseContext context;
+
+    public void reply(Message message) {
+        Optional.ofNullable(context).orElseThrow(() -> new IllegalStateException("该消息未注入上下文"));
+//        context.reply(message);
+    }
+
 }

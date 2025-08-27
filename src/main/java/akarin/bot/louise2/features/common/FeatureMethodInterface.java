@@ -13,7 +13,12 @@ import java.util.List;
  */
 public interface FeatureMethodInterface {
 
+    String getMethodCode();
+
+    FeatureMethodInterface setMethodCode(String code);
+
     String getMethodName();
+
     FeatureMethodInterface setMethodName(String name);
 
     void recordInvoke(Long userId, Long time);

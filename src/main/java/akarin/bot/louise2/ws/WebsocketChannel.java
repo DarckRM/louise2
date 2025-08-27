@@ -72,7 +72,7 @@ public class WebsocketChannel implements ApplicationContextAware {
 
     @OnMessage
     public void onMessage(PostEvent event) {
-        event.setContext(new LouiseContext(event, WebsocketChannel.context.getBean(OnebotService.class)));
+        event.setContext(new LouiseContext(event));
 
         Long[] triggerInfo = getTriggerInfo(event);
         Long userId = triggerInfo[0];
@@ -132,7 +132,7 @@ public class WebsocketChannel implements ApplicationContextAware {
             else if (signature.equals(Conversation.class))
                 parameters.add(waitingManager);
             else if (signature.equals(LouiseContext.class))
-                parameters.add(new LouiseContext(event, context.getBean(OnebotService.class)));
+                parameters.add(new LouiseContext(event));
         }
     }
 

@@ -1,5 +1,7 @@
 package akarin.bot.louise2.domain.onebot.event.api;
 
+import akarin.bot.louise2.domain.common.LouiseContext;
+
 /**
  * @author akarin
  * @version 1.0

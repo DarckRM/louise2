@@ -15,6 +15,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface FeatureAuth {
 
+    String code() default "";
+
     String name() default "";
 
     // 白名单

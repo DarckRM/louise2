@@ -16,8 +16,6 @@ import lombok.Data;
 @Data
 public class PostEvent implements PostEventInterface {
 
-    private LouiseContext context;
-
     private Long time;
 
     @JsonProperty("self_id")
@@ -26,8 +24,6 @@ public class PostEvent implements PostEventInterface {
     @JsonProperty("post_type")
     private String postType;
 
-    public void reply(Message message) {
-        context.reply(message);
-    }
+    private LouiseContext context;
 
 }

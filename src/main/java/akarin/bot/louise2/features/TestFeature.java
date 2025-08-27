@@ -36,9 +36,8 @@ import java.util.List;
  * @date 2025/6/4 16:03
  */
 @Slf4j
-@LouiseFeature(name = "测试功能", prefix = "!")
+@LouiseFeature(code = "test-feature", name = "测试功能", prefix = "!")
 public class TestFeature extends Feature implements FeatureInterface {
-
 
     @Override
     public boolean permission() {
@@ -55,6 +54,7 @@ public class TestFeature extends Feature implements FeatureInterface {
 
     }
 
+    @FeatureAuth(code = "conv-test", cooldown = "5")
     @OnCommand("conv")
     public void testConversation(MessageEvent event, Conversation conversation, OnebotService bot) {
         InteractFunctionWrapper<?> wrapper = conversation.waitingSender("进入监听模式", event, reply -> {
@@ -93,7 +93,7 @@ public class TestFeature extends Feature implements FeatureInterface {
 
         // 校验参数合法性
         if (!type.equals("day") && !type.equals("week") && !type.equals("month")) {
-            context.reply(new ArrayMessage().text(" 功能仅支持参数 day | week | month，请这样 !yande [参数]"));
+            message.reply(new ArrayMessage().text(" 功能仅支持参数 day | week | month，请这样 !yande [参数]"));
             return;
         }
 

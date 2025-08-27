@@ -12,7 +12,7 @@ import akarin.bot.louise2.features.common.FeatureInterface;
  * @description 测试功能
  * @date 2025/6/4 16:03
  */
-@LouiseFeature(name = "测试功能2")
+@LouiseFeature(code = "test-feature2", name = "测试功能2")
 public class TestFeature2 extends Feature implements FeatureInterface {
 
     @Override

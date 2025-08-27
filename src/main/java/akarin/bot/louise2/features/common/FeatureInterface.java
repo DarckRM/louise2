@@ -4,6 +4,7 @@ import akarin.bot.louise2.domain.features.FeatureInfo;
 import akarin.bot.louise2.domain.onebot.event.api.PostEventInterface;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author akarin
@@ -13,6 +14,10 @@ import java.util.List;
  */
 public interface FeatureInterface {
 
+    String getCode();
+
+    void setCode(String code);
+
     String getName();
 
     void setName(String name);
@@ -20,6 +25,10 @@ public interface FeatureInterface {
     void setMethods(List<FeatureMethodInterface> methods);
 
     List<FeatureMethodInterface> getMethods();
+
+    Map<String, List<FeatureMethodInterface>> commandMethods();
+
+    Map<String, List<FeatureMethodInterface>> messageMethods();
 
     List<FeatureMethodInterface> getCommandMethods(String command);
 

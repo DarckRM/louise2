@@ -24,6 +24,8 @@ import java.util.Map;
 @Slf4j
 public class FeatureMethod implements FeatureMethodInterface {
 
+    private String methodCode;
+
     private String methodName;
 
     private Map<Long, Long> invokeRecord = new HashMap<>();
