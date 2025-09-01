@@ -1,9 +1,13 @@
 package akarin.bot.louise2.domain.common;
 
-import akarin.bot.louise2.domain.onebot.event.PostEvent;
-import akarin.bot.louise2.domain.onebot.model.api.Message;
-import akarin.bot.louise2.service.OnebotService;
+import akarin.bot.louise2.config.LouiseConfig;
+import akarin.bot.louise2.config.PluginConfig;
+import akarin.bot.louise2.features.common.ConversationManager;
+import jakarta.annotation.Resource;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author akarin
@@ -14,9 +18,17 @@ import lombok.Data;
 @Data
 public class LouiseContext {
 
-    private PostEvent event;
+    private final List<Long> blackList = new ArrayList<>();
 
-    public LouiseContext(PostEvent event) {
-        this.event = event;
-    }
+    private final List<Long> whiteList = new ArrayList<>();
+
+    @Resource
+    private final LouiseConfig config;
+
+    @Resource
+    private final PluginConfig pluginConfig;
+
+    @Resource
+    private final ConversationManager conversationManager;
+
 }

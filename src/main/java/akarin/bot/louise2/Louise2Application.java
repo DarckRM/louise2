@@ -5,7 +5,6 @@ import akarin.bot.louise2.annotation.features.LouiseFeature;
 import akarin.bot.louise2.annotation.features.OnCommand;
 import akarin.bot.louise2.config.LouiseConfig;
 import akarin.bot.louise2.config.PluginConfig;
-import akarin.bot.louise2.domain.common.LouiseContext;
 import akarin.bot.louise2.features.common.FeatureInterface;
 import akarin.bot.louise2.features.common.FeatureManager;
 import akarin.bot.louise2.features.common.FeatureMethod;

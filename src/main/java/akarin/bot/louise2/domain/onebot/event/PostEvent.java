@@ -24,6 +24,4 @@ public class PostEvent implements PostEventInterface {
     @JsonProperty("post_type")
     private String postType;
 
-    private LouiseContext context;
-
 }

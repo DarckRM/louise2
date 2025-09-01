@@ -43,13 +43,4 @@ public class MessageEvent extends PostEvent {
     private Integer font;
     // 发送人信息
     private Sender sender;
-
-    @Getter(value = AccessLevel.NONE)
-    private LouiseContext context;
-
-    public void reply(Message message) {
-        Optional.ofNullable(context).orElseThrow(() -> new IllegalStateException("该消息未注入上下文"));
-//        context.reply(message);
-    }
-
 }

@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Component
 @Slf4j
-public class Conversation {
+public class ConversationManager {
 
     @Resource
     OnebotService onebotService;
@@ -85,25 +85,25 @@ public class Conversation {
         return waiting(prompt, event, function, DEFAULT_TIMEOUT);
     }
 
-    public InteractFunctionWrapper<?> waitingSomeone(String prompt, PostEvent event, Long userId,
-                                                     InteractFunction<?> function) {
-        return waitingSomeone(prompt, event, userId, function, DEFAULT_TIMEOUT);
+    public InteractFunctionWrapper<?> waitUser(String prompt, PostEvent event, Long userId,
+                                               InteractFunction<?> function) {
+        return waitUser(prompt, event, userId, function, DEFAULT_TIMEOUT);
     }
 
-    public InteractFunctionWrapper<?> waitingSender(String prompt, PostEvent event, InteractFunction<?> function) {
-        return waitingSender(prompt, event, function, DEFAULT_TIMEOUT);
+    public InteractFunctionWrapper<?> waitSender(String prompt, PostEvent event, InteractFunction<?> function) {
+        return waitSender(prompt, event, function, DEFAULT_TIMEOUT);
     }
 
-    public InteractFunctionWrapper<?> waitingSomeone(String prompt, PostEvent event, Long userId,
-                                                     InteractFunction<?> function, Long timeout) {
+    public InteractFunctionWrapper<?> waitUser(String prompt, PostEvent event, Long userId,
+                                               InteractFunction<?> function, Long timeout) {
         prepareWait(prompt, event);
         InteractFunctionWrapper<?> wrapper = new InteractFunctionWrapper<>(function);
         waitingMap.computeIfAbsent(userId, k -> new HashMap<>()).put(wrapper, timeout);
         return functionWaiting(wrapper);
     }
 
-    public InteractFunctionWrapper<?> waitingSender(String prompt, PostEvent event, InteractFunction<?> function,
-                                                    Long timeout) {
+    public InteractFunctionWrapper<?> waitSender(String prompt, PostEvent event, InteractFunction<?> function,
+                                                 Long timeout) {
         if (event instanceof MessageEvent messageEvent) {
             prepareWait(prompt, event);
             InteractFunctionWrapper<?> wrapper = new InteractFunctionWrapper<>(function);

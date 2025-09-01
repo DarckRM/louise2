@@ -13,7 +13,7 @@ import akarin.bot.louise2.exception.EventContinueException;
 import akarin.bot.louise2.exception.EventFinishedException;
 import akarin.bot.louise2.features.common.FeatureManager;
 import akarin.bot.louise2.features.common.FeatureMethodInterface;
-import akarin.bot.louise2.features.common.Conversation;
+import akarin.bot.louise2.features.common.ConversationManager;
 import akarin.bot.louise2.service.OnebotService;
 import akarin.bot.louise2.utils.LouiseThreadPool;
 import akarin.bot.louise2.ws.converter.PostDecoder;
@@ -43,16 +43,17 @@ import java.util.Objects;
 @Slf4j
 @ServerEndpoint(value = "/onebot/v11", decoders = {PostDecoder.class})
 public class WebsocketChannel implements ApplicationContextAware {
-    private static ApplicationContext context;
-    private static Conversation waitingManager;
-    private static LouiseConfig config;
+
+    private static ApplicationContext springContext;
+
+    private static LouiseContext context;
+
     private Session session;
 
     @Override
     public void setApplicationContext(@NotNull ApplicationContext context) throws BeansException {
-        WebsocketChannel.context = context;
-        WebsocketChannel.waitingManager = context.getBean(Conversation.class);
-        WebsocketChannel.config = context.getBean(LouiseConfig.class);
+        WebsocketChannel.springContext = context;
+        WebsocketChannel.context = context.getBean(LouiseContext.class);
     }
 
     @OnOpen
@@ -62,7 +63,7 @@ public class WebsocketChannel implements ApplicationContextAware {
     }
 
     private void outputLog(PostEvent event) {
-        if (!Objects.equals(config.getLogLevel(), "info"))
+        if (!Objects.equals(context.getConfig().getLogLevel(), "info"))
             return;
 
         if (event instanceof MessageEvent messageEvent)
@@ -72,13 +73,11 @@ public class WebsocketChannel implements ApplicationContextAware {
 
     @OnMessage
     public void onMessage(PostEvent event) {
-        event.setContext(new LouiseContext(event));
-
         Long[] triggerInfo = getTriggerInfo(event);
         Long userId = triggerInfo[0];
         outputLog(event);
         // 先处理交互式输入事件
-        if (1 == WebsocketChannel.waitingManager.receiveEvent(event))
+        if (1 == context.getConversationManager().receiveEvent(event))
             return;
 
         List<FeatureMethodInterface> methods = FeatureManager.peekFeature(event);
@@ -108,7 +107,7 @@ public class WebsocketChannel implements ApplicationContextAware {
         if (m.getCooldown() != 0L) {
             long passed = current - m.recentInvoke(userId);
             if (passed < m.getCooldown()) {
-                OnebotService bot = context.getBean(OnebotService.class);
+                OnebotService bot = springContext.getBean(OnebotService.class);
                 bot.sendMessage(event, new ArrayMessage()
                         .text(m.getFeatureInterface().getName() + "-" + m.getMethodName() + " 冷却中，请 " + (m.getCooldown() - passed) / 1000 +
                                 " " +
@@ -124,15 +123,15 @@ public class WebsocketChannel implements ApplicationContextAware {
             if (PostEvent.class.isAssignableFrom(signature))
                 parameters.add(event);
             else if (signature.equals(OnebotService.class))
-                parameters.add(context.getBean(OnebotService.class));
+                parameters.add(springContext.getBean(OnebotService.class));
             else if (signature.equals(LouiseConfig.class))
-                parameters.add(context.getBean(LouiseConfig.class));
+                parameters.add(springContext.getBean(LouiseConfig.class));
             else if (signature.equals(LouiseThreadPool.class))
-                parameters.add(context.getBean(LouiseThreadPool.class));
-            else if (signature.equals(Conversation.class))
-                parameters.add(waitingManager);
+                parameters.add(springContext.getBean(LouiseThreadPool.class));
+            else if (signature.equals(ConversationManager.class))
+                parameters.add(context.getConversationManager());
             else if (signature.equals(LouiseContext.class))
-                parameters.add(new LouiseContext(event));
+                parameters.add(springContext.getBean(LouiseContext.class));
         }
     }
 

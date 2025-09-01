@@ -8,22 +8,19 @@ import akarin.bot.louise2.domain.common.LouiseContext;
 import akarin.bot.louise2.domain.onebot.event.message.MessageEvent;
 import akarin.bot.louise2.domain.onebot.model.message.ArrayMessage;
 import akarin.bot.louise2.domain.onebot.model.message.NodeMessage;
-import akarin.bot.louise2.features.common.Conversation;
+import akarin.bot.louise2.features.common.ConversationManager;
 import akarin.bot.louise2.features.common.Feature;
 import akarin.bot.louise2.features.common.FeatureInterface;
 import akarin.bot.louise2.function.InteractFunctionWrapper;
 import akarin.bot.louise2.service.OnebotService;
 import akarin.bot.louise2.utils.HttpClientUtil;
-import akarin.bot.louise2.utils.LouiseThreadPool;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
-import jakarta.websocket.OnMessage;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Response;
 import org.springframework.http.MediaType;
 
-import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -56,8 +53,8 @@ public class TestFeature extends Feature implements FeatureInterface {
 
     @FeatureAuth(code = "conv-test", cooldown = "5")
     @OnCommand("conv")
-    public void testConversation(MessageEvent event, Conversation conversation, OnebotService bot) {
-        InteractFunctionWrapper<?> wrapper = conversation.waitingSender("进入监听模式", event, reply -> {
+    public void testConversation(MessageEvent event, ConversationManager conversationManager, OnebotService bot) {
+        InteractFunctionWrapper<?> wrapper = conversationManager.waitSender("进入监听模式", event, reply -> {
             if (reply == null)
                 bot.reply(event, new ArrayMessage().text("等待回复超时"));
 
@@ -77,7 +74,7 @@ public class TestFeature extends Feature implements FeatureInterface {
 
     @OnCommand("image")
     public void testImageSend(OnebotService bot, LouiseConfig config, MessageEvent event) {
-        event.reply(NodeMessage.init(c -> c.text("输入测试").text("第二段文本").image(config.getCachePath() + "/sample" +
+        bot.reply(event, NodeMessage.init(c -> c.text("输入测试").text("第二段文本").image(config.getCachePath() + "/sample" +
                 ".jpg")).node(c -> c.text("多节点测试").text("第三段文本").image(config.getCachePath() + "/sample" + ".jpg")));
     }
 
@@ -93,7 +90,7 @@ public class TestFeature extends Feature implements FeatureInterface {
 
         // 校验参数合法性
         if (!type.equals("day") && !type.equals("week") && !type.equals("month")) {
-            message.reply(new ArrayMessage().text(" 功能仅支持参数 day | week | month，请这样 !yande [参数]"));
+            bot.reply(message, new ArrayMessage().text(" 功能仅支持参数 day | week | month，请这样 !yande [参数]"));
             return;
         }
 
